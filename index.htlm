@@ -4,133 +4,438 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>デルム式プロンプトジェネレーター - 完全取扱説明書</title>
+    <title>デルム式プロンプトジェネレーター 取扱説明書</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <style>
-         {
-            body { margin: 0; padding: 20px; }
-            .no-print { display: none; }
-        }
-        .gradient-bg {
+        .section-header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-        .section-bg {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
         .feature-card {
-            transition: transform 0.3s ease;
+            transition: transform 0.2s ease-in-out;
         }
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-2px);
+        }
+         {
+            .no-print { display: none; }
+            body { font-size: 12px; }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-    <!-- ヘッダー -->
-    <header class="gradient-bg text-white py-12">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <h1 class="text-5xl font-bold mb-4">
-                <i class="fas fa-magic mr-4"></i>
-                デルム式プロンプトジェネレーター
+<body class="bg-gray-50 text-gray-800 leading-relaxed">
+    <!-- Header -->
+    <header class="section-header text-white py-8 mb-8">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-2">
+                <i class="fas fa-magic mr-3"></i>デルム式プロンプトジェネレーター
             </h1>
-            <h2 class="text-2xl font-light mb-6">完全取扱説明書</h2>
-            <p class="text-xl opacity-90">AI画像生成の可能性を最大化する究極のツール</p>
+            <p class="text-xl opacity-90">完全取扱説明書</p>
+            <p class="text-sm mt-2 opacity-75">AI画像生成用プロンプト作成ツール</p>
         </div>
     </header>
 
-    <div class="max-w-6xl mx-auto px-6 py-12">
-        <!-- 目次 -->
-        <section class="mb-16">
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <h2 class="text-3xl font-bold text-center mb-8 text-purple-700">
-                    <i class="fas fa-list mr-3"></i>目次
-                </h2>
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div class="space-y-3">
-                        <a href="#overview" class="block p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
-                            <span class="font-bold text-blue-700">第1章:</span> ツール概要
-                        </a>
-                        <a href="#basic-guide" class="block p-3 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
-                            <span class="font-bold text-green-700">第2章:</span> 基本操作ガイド
-                        </a>
-                        <a href="#features" class="block p-3 bg-yellow-50 rounded-lg hover:bg-yellow-100 transition-colors">
-                            <span class="font-bold text-yellow-700">第3章:</span> 各機能詳細解説
-                        </a>
-                        <a href="#random" class="block p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors">
-                            <span class="font-bold text-purple-700">第4章:</span> ランダム生成機能
-                        </a>
-                        <a href="#scene-management" class="block p-3 bg-pink-50 rounded-lg hover:bg-pink-100 transition-colors">
-                            <span class="font-bold text-pink-700">第5章:</span> シーン管理システム
-                        </a>
+    <div class="container mx-auto px-4 max-w-4xl">
+        <!-- Table of Contents -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-purple-700">
+                <i class="fas fa-list mr-2"></i>目次
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <a href="#overview" class="flex items-center p-3 rounded-lg hover:bg-purple-50 transition-colors">
+                    <i class="fas fa-info-circle text-purple-500 mr-3"></i>
+                    <span>1. ツール概要</span>
+                </a>
+                <a href="#basic-operations" class="flex items-center p-3 rounded-lg hover:bg-purple-50 transition-colors">
+                    <i class="fas fa-play-circle text-purple-500 mr-3"></i>
+                    <span>2. 基本操作</span>
+                </a>
+                <a href="#features" class="flex items-center p-3 rounded-lg hover:bg-purple-50 transition-colors">
+                    <i class="fas fa-cogs text-purple-500 mr-3"></i>
+                    <span>3. 機能詳細</span>
+                </a>
+                <a href="#random-generation" class="flex items-center p-3 rounded-lg hover:bg-purple-50 transition-colors">
+                    <i class="fas fa-dice text-purple-500 mr-3"></i>
+                    <span>4. ランダム生成</span>
+                </a>
+                <a href="#scene-management" class="flex items-center p-3 rounded-lg hover:bg-purple-50 transition-colors">
+                    <i class="fas fa-save text-purple-500 mr-3"></i>
+                    <span>5. シーン管理</span>
+                </a>
+                <a href="#wildcard" class="flex items-center p-3 rounded-lg hover:bg-purple-50 transition-colors">
+                    <i class="fas fa-copy text-purple-500 mr-3"></i>
+                    <span>6. Wild Card機能</span>
+                </a>
+                <a href="#examples" class="flex items-center p-3 rounded-lg hover:bg-purple-50 transition-colors">
+                    <i class="fas fa-lightbulb text-purple-500 mr-3"></i>
+                    <span>7. 使用例</span>
+                </a>
+                <a href="#faq" class="flex items-center p-3 rounded-lg hover:bg-purple-50 transition-colors">
+                    <i class="fas fa-question-circle text-purple-500 mr-3"></i>
+                    <span>8. よくある質問</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Section 1: Overview -->
+        <section id="overview" class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-purple-700">
+                <i class="fas fa-info-circle mr-2"></i>1. ツール概要
+            </h2>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-3 text-gray-700">デルム式プロンプトジェネレーターとは</h3>
+                <p class="text-gray-600 mb-4">
+                    AI画像生成用のプロンプト（呪文）を効率的に作成・管理できる高機能Webツールです。
+                    複雑なプロンプトを手動で書く必要がなく、チェックボックスの選択だけで高品質なプロンプトを自動生成できます。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="feature-card bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
+                    <h4 class="font-semibold text-blue-800 mb-2">
+                        <i class="fas fa-star text-yellow-500 mr-2"></i>主要特徴
+                    </h4>
+                    <ul class="text-sm text-blue-700 space-y-1">
+                        <li>• 12カテゴリーの詳細設定</li>
+                        <li>• ランダム生成機能</li>
+                        <li>• シーン別保存管理</li>
+                        <li>• Wild Card対応</li>
+                        <li>• 品質向上タグ搭載</li>
+                    </ul>
+                </div>
+                <div class="feature-card bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg">
+                    <h4 class="font-semibold text-green-800 mb-2">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>動作環境
+                    </h4>
+                    <ul class="text-sm text-green-700 space-y-1">
+                        <li>• モダンWebブラウザ</li>
+                        <li>• インストール不要</li>
+                        <li>• オフライン対応</li>
+                        <li>• レスポンシブデザイン</li>
+                        <li>• 外部依存なし</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Basic Operations -->
+        <section id="basic-operations" class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-purple-700">
+                <i class="fas fa-play-circle mr-2"></i>2. 基本操作
+            </h2>
+            
+            <div class="space-y-6">
+                <div class="border-l-4 border-blue-500 pl-4">
+                    <h3 class="text-lg font-semibold mb-2">基本的な使用手順</h3>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-600">
+                        <li>各カテゴリーから希望する項目をチェック</li>
+                        <li>「生成されたプロンプト」で結果を確認</li>
+                        <li>必要に応じてランダム生成機能を使用</li>
+                        <li>気に入ったプロンプトをシーンに保存</li>
+                        <li>Wild Card形式で一括コピー</li>
+                    </ol>
+                </div>
+
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                    <h4 class="font-semibold text-yellow-800 mb-2">
+                        <i class="fas fa-lightbulb text-yellow-600 mr-2"></i>操作のコツ
+                    </h4>
+                    <p class="text-yellow-700 text-sm">
+                        項目は上から順番に設定することで、論理的で一貫性のあるプロンプトが生成されます。
+                        まずスコアで品質を設定し、キャラクター → シーン → 撮影の順で進めましょう。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Features -->
+        <section id="features" class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-purple-700">
+                <i class="fas fa-cogs mr-2"></i>3. 機能詳細
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="feature-card bg-gradient-to-br from-red-50 to-red-100 p-4 rounded-lg">
+                    <h4 class="font-semibold text-red-800 mb-2">
+                        <i class="fas fa-trophy text-yellow-500 mr-2"></i>スコア（品質）
+                    </h4>
+                    <p class="text-sm text-red-700">
+                        score_9, masterpiece, best qualityなど品質向上タグで高品質な画像生成を実現
+                    </p>
+                </div>
+
+                <div class="feature-card bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
+                    <h4 class="font-semibold text-blue-800 mb-2">
+                        <i class="fas fa-user text-blue-500 mr-2"></i>キャラクター設定
+                    </h4>
+                    <p class="text-sm text-blue-700">
+                        年齢、人数、髪型・髪色、表情、体型の詳細設定でキャラクターを定義
+                    </p>
+                </div>
+
+                <div class="feature-card bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg">
+                    <h4 class="font-semibold text-green-800 mb-2">
+                        <i class="fas fa-tshirt text-green-500 mr-2"></i>服装・ポーズ
+                    </h4>
+                    <p class="text-sm text-green-700">
+                        豊富な服装オプションとポーズ設定で多様なシーンを表現
+                    </p>
+                </div>
+
+                <div class="feature-card bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg">
+                    <h4 class="font-semibold text-purple-800 mb-2">
+                        <i class="fas fa-heart text-pink-500 mr-2"></i>フェチ・SM拘束
+                    </h4>
+                    <p class="text-sm text-purple-700">
+                        特殊な嗜好や拘束系要素に対応した専門的なタグ設定
+                    </p>
+                </div>
+
+                <div class="feature-card bg-gradient-to-br from-indigo-50 to-indigo-100 p-4 rounded-lg">
+                    <h4 class="font-semibold text-indigo-800 mb-2">
+                        <i class="fas fa-camera text-indigo-500 mr-2"></i>アングル
+                    </h4>
+                    <p class="text-sm text-indigo-700">
+                        正面、側面、上から、下からなど撮影アングルの詳細指定
+                    </p>
+                </div>
+
+                <div class="feature-card bg-gradient-to-br from-gray-50 to-gray-100 p-4 rounded-lg">
+                    <h4 class="font-semibold text-gray-800 mb-2">
+                        <i class="fas fa-image text-gray-500 mr-2"></i>背景
+                    </h4>
+                    <p class="text-sm text-gray-700">
+                        寝室、浴室、屋外など様々なロケーション設定で環境を演出
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h4 class="font-semibold text-blue-800 mb-2">
+                    <i class="fas fa-eye text-blue-600 mr-2"></i>表示制御機能
+                </h4>
+                <p class="text-blue-700 text-sm mb-2">
+                    各カテゴリーごとに表示・非表示を切り替え可能。固定した項目を非表示にして、
+                    ランダム要素のみを表示する高度な制御ができます。
+                </p>
+                <div class="text-xs text-blue-600">
+                    例：年齢と人数を固定 → 表示OFF → 服装やポーズのランダム要素のみ表示
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Random Generation -->
+        <section id="random-generation" class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-purple-700">
+                <i class="fas fa-dice mr-2"></i>4. ランダム生成機能
+            </h2>
+            
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded-lg">
+                        <h4 class="font-semibold text-orange-800 mb-3">
+                            <i class="fas fa-random text-orange-600 mr-2"></i>完全ランダム生成
+                        </h4>
+                        <p class="text-sm text-orange-700 mb-3">
+                            全カテゴリーからランダムに項目を選択して、予想外の組み合わせを生成
+                        </p>
+                        <div class="text-xs text-orange-600 bg-white p-2 rounded">
+                            用途：インスピレーション獲得、新しいアイデア発見
+                        </div>
                     </div>
-                    <div class="space-y-3">
-                        <a href="#wildcard" class="block p-3 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors">
-                            <span class="font-bold text-indigo-700">第6章:</span> Wild Card機能
-                        </a>
-                        <a href="#examples" class="block p-3 bg-red-50 rounded-lg hover:bg-red-100 transition-colors">
-                            <span class="font-bold text-red-700">第7章:</span> 実践的な使用例
-                        </a>
-                        <a href="#faq" class="block p-3 bg-teal-50 rounded-lg hover:bg-teal-100 transition-colors">
-                            <span class="font-bold text-teal-700">第8章:</span> よくある質問（FAQ）
-                        </a>
-                        <a href="#case-studies" class="block p-3 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors">
-                            <span class="font-bold text-orange-700">第9章:</span> 活用事例集
-                        </a>
-                        <a href="#conclusion" class="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                            <span class="font-bold text-gray-700">第10章:</span> まとめ
-                        </a>
+
+                    <div class="bg-gradient-to-br from-cyan-50 to-cyan-100 p-4 rounded-lg">
+                        <h4 class="font-semibold text-cyan-800 mb-3">
+                            <i class="fas fa-lock text-cyan-600 mr-2"></i>部分ランダム生成
+                        </h4>
+                        <p class="text-sm text-cyan-700 mb-3">
+                            固定したい項目をロック、残りをランダム生成する高度な機能
+                        </p>
+                        <div class="text-xs text-cyan-600 bg-white p-2 rounded">
+                            用途：特定要素を保持したバリエーション作成
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-l-4 border-green-500 pl-4">
+                    <h4 class="font-semibold text-green-800 mb-2">ロック機能の使い方</h4>
+                    <ol class="list-decimal list-inside space-y-1 text-sm text-green-700">
+                        <li>固定したいカテゴリーの「ロック」ボタンをクリック</li>
+                        <li>ロックされた項目は色が変わり固定状態に</li>
+                        <li>「部分ランダム」で未ロック項目のみランダム生成</li>
+                        <li>ロック解除は再度ボタンをクリック</li>
+                    </ol>
+                </div>
+
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                    <h4 class="font-semibold text-yellow-800 mb-2">
+                        <i class="fas fa-star text-yellow-600 mr-2"></i>効果的な活用例
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+                        <div class="text-yellow-700">
+                            <strong>パターン1:</strong><br>
+                            年齢・人数固定<br>
+                            → 服装・ポーズランダム
+                        </div>
+                        <div class="text-yellow-700">
+                            <strong>パターン2:</strong><br>
+                            基本設定固定<br>
+                            → アングル・背景ランダム
+                        </div>
+                        <div class="text-yellow-700">
+                            <strong>パターン3:</strong><br>
+                            キャラ設定固定<br>
+                            → 特殊要素ランダム
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 第1章: ツール概要 -->
-        <section id="overview" class="mb-16">
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <h2 class="text-3xl font-bold mb-8 text-blue-700 border-b-2 border-blue-200 pb-4">
-                    <i class="fas fa-info-circle mr-3"></i>第1章: ツール概要
-                </h2>
-                
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-blue-600">デルム式プロンプトジェネレーターとは</h3>
-                        <p class="text-lg leading-relaxed mb-6">
-                            デルム式プロンプトジェネレーターは、AI画像生成用の高品質プロンプトを効率的に作成するための革新的なWebツールです。
-                            複雑なプロンプト作成を直感的な操作で実現し、初心者から上級者まで幅広く活用できます。
-                        </p>
+        <!-- Section 5: Scene Management -->
+        <section id="scene-management" class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-purple-700">
+                <i class="fas fa-save mr-2"></i>5. シーン管理システム
+            </h2>
+            
+            <div class="space-y-6">
+                <div class="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-purple-800 mb-2">シーン管理の概要</h4>
+                    <p class="text-purple-700 text-sm">
+                        6つのシーンに各10パターンまでプロンプトを保存可能。
+                        プロジェクトごと、テーマごとに整理して管理できます。
+                    </p>
+                </div>
 
-                        <h4 class="text-xl font-bold mb-3 text-blue-500">主な特徴</h4>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>12の詳細カテゴリー設定</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>高度なランダム生成機能</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>シーン別保存管理</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Wild Card対応</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>項目別表示制御</li>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3">
+                            <i class="fas fa-folder text-blue-500 mr-2"></i>保存機能
+                        </h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                シーン1〜6の独立した管理
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                各シーン最大10パターン保存
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                保存数のリアルタイム表示
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                ワンクリック保存・削除
+                            </li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 class="text-xl font-bold mb-3 text-blue-500">動作環境</h4>
-                        <div class="bg-blue-50 p-4 rounded-lg mb-6">
-                            <ul class="space-y-2">
-                                <li><i class="fas fa-globe text-blue-500 mr-2"></i><strong>ブラウザ:</strong> Chrome, Firefox, Safari, Edge (最新版推奨)</li>
-                                <li><i class="fas fa-mobile-alt text-blue-500 mr-2"></i><strong>デバイス:</strong> PC, タブレット, スマートフォン対応</li>
-                                <li><i class="fas fa-wifi text-blue-500 mr-2"></i><strong>インターネット:</strong> 初回読み込み時のみ必要</li>
-                                <li><i class="fas fa-download text-blue-500 mr-2"></i><strong>インストール:</strong> 不要（ブラウザのみで動作）</li>
-                            </ul>
-                        </div>
+                        <h4 class="font-semibold text-gray-800 mb-3">
+                            <i class="fas fa-cog text-purple-500 mr-2"></i>管理機能
+                        </h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                個別プロンプト削除
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                シーン全体クリア
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                保存済み一覧表示
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                シーン間移動・コピー
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-                        <h4 class="text-xl font-bold mb-3 text-blue-500">対象ユーザー</h4>
-                        <div class="space-y-3">
-                            <div class="bg-green-50 p-3 rounded-lg">
-                                <strong class="text-green-700">初心者:</strong> AI画像生成を始めたばかりの方
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <h4 class="font-semibold text-blue-800 mb-2">
+                        <i class="fas fa-lightbulb text-blue-600 mr-2"></i>シーン活用のヒント
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm text-blue-700">
+                        <div>
+                            <strong>シーン1-2:</strong> メインキャラクター用
+                        </div>
+                        <div>
+                            <strong>シーン3-4:</strong> サブキャラクター用
+                        </div>
+                        <div>
+                            <strong>シーン5-6:</strong> 特殊シーン・実験用
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Wild Card -->
+        <section id="wildcard" class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-purple-700">
+                <i class="fas fa-copy mr-2"></i>6. Wild Card機能
+            </h2>
+            
+            <div class="space-y-6">
+                <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-green-800 mb-2">Wild Cardとは</h4>
+                    <p class="text-green-700 text-sm">
+                        複数のプロンプトを <code class="bg-white px-1 rounded">{prompt1|prompt2|prompt3}</code> 形式で組み合わせ、
+                        AI生成時にランダムで選択される仕組みです。大量のバリエーション生成に最適。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="border border-gray-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-gray-800 mb-3">
+                            <i class="fas fa-clipboard text-blue-500 mr-2"></i>コピー機能
+                        </h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>• プロンプトのみコピー（余計なテキスト除外）</li>
+                            <li>• 全シーン一括コピー</li>
+                            <li>• Wild Card形式自動変換</li>
+                            <li>• クリップボード直接コピー</li>
+                        </ul>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-gray-800 mb-3">
+                            <i class="fas fa-magic text-purple-500 mr-2"></i>活用方法
+                        </h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>• バッチ生成でバリエーション作成</li>
+                            <li>• 同一設定での表情バリエーション</li>
+                            <li>• ポーズや角度の複数パターン</li>
+                            <li>• 服装の着せ替えパターン</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                    <h4 class="font-semibold text-gray-800 mb-3">Wild Card使用例</h4>
+                    <div class="space-y-3">
+                        <div class="bg-white p-3 rounded border-l-4 border-blue-500">
+                            <div class="text-xs text-gray-500 mb-1">元のプロンプト（3パターン）:</div>
+                            <div class="text-sm font-mono text-gray-700">
+                                1. score_9, 1girl, smile, school uniform<br>
+                                2. score_9, 1girl, embarrassed, school uniform<br>
+                                3. score_9, 1girl, surprised, school uniform
                             </div>
-                            <div class="bg-yellow-50 p-3 rounded-lg">
-                                <strong class="text-yellow-700">中級者:</strong> より効率的なプロンプト作成を求める方
-                            </div>
-                            <div class="bg-red-50 p-3 rounded-lg">
-                                <strong class="text-red-700">上級者:</strong> 大量のバリエーション生成が必要な方
+                        </div>
+                        <div class="text-center">
+                            <i class="fas fa-arrow-down text-purple-500"></i>
+                        </div>
+                        <div class="bg-white p-3 rounded border-l-4 border-green-500">
+                            <div class="text-xs text-gray-500 mb-1">Wild Card形式:</div>
+                            <div class="text-sm font-mono text-green-700">
+                                score_9, 1girl, {smile|embarrassed|surprised}, school uniform
                             </div>
                         </div>
                     </div>
@@ -138,1106 +443,259 @@
             </div>
         </section>
 
-        <!-- 第2章: 基本操作ガイド -->
-        <section id="basic-guide" class="mb-16">
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <h2 class="text-3xl font-bold mb-8 text-green-700 border-b-2 border-green-200 pb-4">
-                    <i class="fas fa-play-circle mr-3"></i>第2章: 基本操作ガイド
-                </h2>
-
-                <div class="space-y-8">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-green-600">画面構成</h3>
-                        <div class="grid md:grid-cols-3 gap-6">
-                            <div class="bg-green-50 p-4 rounded-lg">
-                                <h4 class="font-bold text-green-700 mb-2">
-                                    <i class="fas fa-eye mr-2"></i>プロンプト表示エリア
-                                </h4>
-                                <p class="text-sm">生成されたプロンプトがリアルタイムで表示される領域</p>
-                            </div>
-                            <div class="bg-blue-50 p-4 rounded-lg">
-                                <h4 class="font-bold text-blue-700 mb-2">
-                                    <i class="fas fa-sliders-h mr-2"></i>設定パネル
-                                </h4>
-                                <p class="text-sm">12のカテゴリーから詳細な項目を選択する領域</p>
-                            </div>
-                            <div class="bg-purple-50 p-4 rounded-lg">
-                                <h4 class="font-bold text-purple-700 mb-2">
-                                    <i class="fas fa-save mr-2"></i>管理パネル
-                                </h4>
-                                <p class="text-sm">シーン保存や一括管理を行う領域</p>
-                            </div>
+        <!-- Section 7: Examples -->
+        <section id="examples" class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-purple-700">
+                <i class="fas fa-lightbulb mr-2"></i>7. 実践的な使用例
+            </h2>
+            
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
+                        <h4 class="font-semibold text-blue-800 mb-2">
+                            <i class="fas fa-user-graduate text-blue-600 mr-2"></i>初心者向け
+                        </h4>
+                        <div class="text-sm text-blue-700 space-y-1">
+                            <p><strong>手順:</strong></p>
+                            <p>1. スコア: best quality選択</p>
+                            <p>2. 年齢: 20選択</p>
+                            <p>3. 表情: smile選択</p>
+                            <p>4. 服装: school uniform選択</p>
+                            <p>5. 生成されたプロンプトをコピー</p>
                         </div>
                     </div>
 
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-green-600">基本的な使用手順</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-start space-x-4">
-                                <div class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">1</div>
-                                <div>
-                                    <h4 class="font-bold text-lg">品質設定</h4>
-                                    <p>スコアタグから希望する画像品質を選択します。高品質な結果を得るために最初に設定することを推奨します。</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-4">
-                                <div class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">2</div>
-                                <div>
-                                    <h4 class="font-bold text-lg">キャラクター設定</h4>
-                                    <p>年齢、人数、髪型・髪色、表情、体型を順番に設定して、基本的なキャラクター像を決定します。</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-4">
-                                <div class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">3</div>
-                                <div>
-                                    <h4 class="font-bold text-lg">シーン設定</h4>
-                                    <p>服装、ポーズ、フェチ、SM・拘束要素を選択して、具体的なシーンを構築します。</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-4">
-                                <div class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">4</div>
-                                <div>
-                                    <h4 class="font-bold text-lg">視覚設定</h4>
-                                    <p>アングルで撮影角度を、背景で環境を設定して、最終的な画像構成を完成させます。</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-4">
-                                <div class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">5</div>
-                                <div>
-                                    <h4 class="font-bold text-lg">保存・管理</h4>
-                                    <p>気に入ったプロンプトをシーンに保存し、後で一括管理やコピーを行います。</p>
-                                </div>
-                            </div>
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg">
+                        <h4 class="font-semibold text-green-800 mb-2">
+                            <i class="fas fa-user text-green-600 mr-2"></i>中級者向け
+                        </h4>
+                        <div class="text-sm text-green-700 space-y-1">
+                            <p><strong>バリエーション作成:</strong></p>
+                            <p>1. 基本設定を固定（ロック）</p>
+                            <p>2. 表情・ポーズをランダム生成</p>
+                            <p>3. 気に入ったパターンを各シーンに保存</p>
+                            <p>4. Wild Card形式で一括コピー</p>
                         </div>
                     </div>
 
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-green-600">項目選択のコツ</h3>
-                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
-                            <h4 class="font-bold text-yellow-800 mb-2">
-                                <i class="fas fa-lightbulb mr-2"></i>効率的な選択方法
-                            </h4>
-                            <ul class="space-y-2 text-yellow-700">
-                                <li>• <strong>複数選択OK:</strong> 各カテゴリーで複数の項目を同時に選択可能</li>
-                                <li>• <strong>リアルタイム更新:</strong> 選択するとプロンプトが即座に更新される</li>
-                                <li>• <strong>組み合わせ自由:</strong> 全てのカテゴリーを使う必要はない</li>
-                                <li>• <strong>後から変更:</strong> いつでも選択を変更・追加・削除可能</li>
-                            </ul>
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-800 mb-2">
+                            <i class="fas fa-user-cog text-purple-600 mr-2"></i>上級者向け
+                        </h4>
+                        <div class="text-sm text-purple-700 space-y-1">
+                            <p><strong>大量生成ワークフロー:</strong></p>
+                            <p>1. テーマ別にシーン1-6使い分け</p>
+                            <p>2. 表示制御で変動要素のみ表示</p>
+                            <p>3. 複数パターンを系統的に生成</p>
+                            <p>4. Wild Card化して効率的に実行</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                    <h4 class="font-semibold text-yellow-800 mb-3">
+                        <i class="fas fa-rocket text-yellow-600 mr-2"></i>効率的なワークフロー例
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <h5 class="font-medium text-yellow-800 mb-2">ポートレート制作</h5>
+                            <ol class="list-decimal list-inside text-sm text-yellow-700 space-y-1">
+                                <li>スコア・年齢・人数を設定</li>
+                                <li>髪型・体型を固定</li>
+                                <li>表情・アングルをランダム</li>
+                                <li>10パターン生成してシーン1に保存</li>
+                                <li>Wild Card化して一括生成</li>
+                            </ol>
+                        </div>
+                        <div>
+                            <h5 class="font-medium text-yellow-800 mb-2">コスプレ撮影</h5>
+                            <ol class="list-decimal list-inside text-sm text-yellow-700 space-y-1">
+                                <li>キャラクター設定を固定</li>
+                                <li>服装を特定のコスプレに設定</li>
+                                <li>ポーズ・背景をランダム</li>
+                                <li>シーン2-3に分けて保存</li>
+                                <li>最適なパターンを選択</li>
+                            </ol>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 第3章: 各機能詳細解説 -->
-        <section id="features" class="mb-16">
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <h2 class="text-3xl font-bold mb-8 text-yellow-700 border-b-2 border-yellow-200 pb-4">
-                    <i class="fas fa-cogs mr-3"></i>第3章: 各機能詳細解説
-                </h2>
-
-                <div class="space-y-10">
-                    <!-- スコアタグ -->
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-yellow-600">
-                            <i class="fas fa-star mr-2"></i>スコアタグ（品質設定）
-                        </h3>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <h4 class="font-bold mb-3">高品質タグ</h4>
-                                <div class="space-y-2">
-                                    <div class="bg-green-100 p-2 rounded"><code class="text-green-800">score_9</code> - 最高品質</div>
-                                    <div class="bg-green-100 p-2 rounded"><code class="text-green-800">score_8_up</code> - 高品質以上</div>
-                                    <div class="bg-blue-100 p-2 rounded"><code class="text-blue-800">masterpiece</code> - 傑作品質</div>
-                                    <div class="bg-blue-100 p-2 rounded"><code class="text-blue-800">best quality</code> - 最高品質</div>
-                                </div>
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-3">技術仕様タグ</h4>
-                                <div class="space-y-2">
-                                    <div class="bg-purple-100 p-2 rounded"><code class="text-purple-800">ultra detailed</code> - 超詳細</div>
-                                    <div class="bg-purple-100 p-2 rounded"><code class="text-purple-800">8k resolution</code> - 8K解像度</div>
-                                    <div class="bg-red-100 p-2 rounded"><code class="text-red-800">photorealistic</code> - フォトリアル</div>
-                                    <div class="bg-red-100 p-2 rounded"><code class="text-red-800">professional</code> - プロ仕様</div>
-                                </div>
-                            </div>
-                        </div>
+        <!-- Section 8: FAQ -->
+        <section id="faq" class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-purple-700">
+                <i class="fas fa-question-circle mr-2"></i>8. よくある質問
+            </h2>
+            
+            <div class="space-y-4">
+                <div class="border border-gray-200 rounded-lg">
+                    <div class="bg-gray-50 p-4 cursor-pointer" onclick="toggleFAQ(1)">
+                        <h4 class="font-semibold text-gray-800 flex items-center justify-between">
+                            <span><i class="fas fa-question text-purple-500 mr-2"></i>プロンプトが生成されません</span>
+                            <i class="fas fa-chevron-down text-gray-500" id="icon1"></i>
+                        </h4>
                     </div>
-
-                    <!-- キャラクター設定 -->
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-yellow-600">
-                            <i class="fas fa-user mr-2"></i>キャラクター設定
-                        </h3>
-                        <div class="grid md:grid-cols-3 gap-6">
-                            <div class="bg-blue-50 p-4 rounded-lg">
-                                <h4 class="font-bold text-blue-700 mb-2">年齢・人数</h4>
-                                <p class="text-sm mb-2">基本的な人物構成を設定</p>
-                                <ul class="text-xs space-y-1">
-                                    <li>• 年齢: 18-60歳の範囲で設定</li>
-                                    <li>• 人数: 1-3人、ハーレム、男性含む</li>
-                                </ul>
-                            </div>
-                            <div class="bg-green-50 p-4 rounded-lg">
-                                <h4 class="font-bold text-green-700 mb-2">髪型・髪色</h4>
-                                <p class="text-sm mb-2">髪の特徴を詳細設定</p>
-                                <ul class="text-xs space-y-1">
-                                    <li>• 髪型: ロング、ショート、ツインテールなど</li>
-                                    <li>• 髪色: 金髪、黒髪、特殊色など</li>
-                                </ul>
-                            </div>
-                            <div class="bg-purple-50 p-4 rounded-lg">
-                                <h4 class="font-bold text-purple-700 mb-2">表情・体型</h4>
-                                <p class="text-sm mb-2">感情表現と身体的特徴</p>
-                                <ul class="text-xs space-y-1">
-                                    <li>• 表情: 笑顔、恥ずかしい、誘惑的など</li>
-                                    <li>• 体型: 胸のサイズ、体格など</li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="p-4 hidden" id="answer1">
+                        <p class="text-gray-600 text-sm">
+                            少なくとも1つのカテゴリーから項目を選択してください。
+                            また、ブラウザのJavaScriptが有効になっているか確認してください。
+                        </p>
                     </div>
+                </div>
 
-                    <!-- シーン設定 -->
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-yellow-600">
-                            <i class="fas fa-film mr-2"></i>シーン設定
-                        </h3>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <h4 class="font-bold mb-3 text-red-600">服装・ポーズ</h4>
-                                <div class="bg-red-50 p-4 rounded-lg">
-                                    <ul class="space-y-2 text-sm">
-                                        <li><i class="fas fa-tshirt text-red-500 mr-2"></i><strong>服装:</strong> 制服、ドレス、下着類、コスプレなど豊富な選択肢</li>
-                                        <li><i class="fas fa-running text-red-500 mr-2"></i><strong>ポーズ:</strong> 基本ポーズから特殊なポーズまで幅広く対応</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-3 text-indigo-600">特殊要素</h4>
-                                <div class="bg-indigo-50 p-4 rounded-lg">
-                                    <ul class="space-y-2 text-sm">
-                                        <li><i class="fas fa-heart text-indigo-500 mr-2"></i><strong>フェチ:</strong> 様々な嗜好に対応した詳細設定</li>
-                                        <li><i class="fas fa-link text-indigo-500 mr-2"></i><strong>SM・拘束:</strong> 拘束系アイテムの豊富な選択肢</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                <div class="border border-gray-200 rounded-lg">
+                    <div class="bg-gray-50 p-4 cursor-pointer" onclick="toggleFAQ(2)">
+                        <h4 class="font-semibold text-gray-800 flex items-center justify-between">
+                            <span><i class="fas fa-question text-purple-500 mr-2"></i>ランダム生成で同じパターンが出ます</span>
+                            <i class="fas fa-chevron-down text-gray-500" id="icon2"></i>
+                        </h4>
                     </div>
+                    <div class="p-4 hidden" id="answer2">
+                        <p class="text-gray-600 text-sm">
+                            選択可能な項目数が少ない場合、同じパターンが出やすくなります。
+                            より多くのカテゴリーを有効にするか、部分ランダム機能を活用してください。
+                        </p>
+                    </div>
+                </div>
 
-                    <!-- 視覚設定 -->
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-yellow-600">
-                            <i class="fas fa-camera mr-2"></i>視覚設定
-                        </h3>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div class="bg-teal-50 p-4 rounded-lg">
-                                <h4 class="font-bold text-teal-700 mb-2">アングル設定</h4>
-                                <ul class="text-sm space-y-1">
-                                    <li>• 正面、側面、背面</li>
-                                    <li>• 上から、下から、斜め</li>
-                                    <li>• クローズアップ、全身、上半身</li>
-                                </ul>
-                            </div>
-                            <div class="bg-orange-50 p-4 rounded-lg">
-                                <h4 class="font-bold text-orange-700 mb-2">背景設定</h4>
-                                <ul class="text-sm space-y-1">
-                                    <li>• 室内: 寝室、浴室、オフィスなど</li>
-                                    <li>• 屋外: 公園、ビーチ、屋上など</li>
-                                    <li>• 特殊: 車内、電車、エレベーターなど</li>
-                                </ul>
-                            </div>
-                        </div>
+                <div class="border border-gray-200 rounded-lg">
+                    <div class="bg-gray-50 p-4 cursor-pointer" onclick="toggleFAQ(3)">
+                        <h4 class="font-semibold text-gray-800 flex items-center justify-between">
+                            <span><i class="fas fa-question text-purple-500 mr-2"></i>保存したプロンプトが消えました</span>
+                            <i class="fas fa-chevron-down text-gray-500" id="icon3"></i>
+                        </h4>
+                    </div>
+                    <div class="p-4 hidden" id="answer3">
+                        <p class="text-gray-600 text-sm">
+                            データはブラウザのローカルストレージに保存されます。
+                            ブラウザのデータをクリアすると消える可能性があります。
+                            重要なプロンプトは外部にバックアップすることを推奨します。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg">
+                    <div class="bg-gray-50 p-4 cursor-pointer" onclick="toggleFAQ(4)">
+                        <h4 class="font-semibold text-gray-800 flex items-center justify-between">
+                            <span><i class="fas fa-question text-purple-500 mr-2"></i>Wild Card形式が正しく動作しません</span>
+                            <i class="fas fa-chevron-down text-gray-500" id="icon4"></i>
+                        </h4>
+                    </div>
+                    <div class="p-4 hidden" id="answer4">
+                        <p class="text-gray-600 text-sm">
+                            使用するAI生成ソフトウェアがWild Card形式に対応している必要があります。
+                            対応していない場合は、個別のプロンプトとして使用してください。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg">
+                    <div class="bg-gray-50 p-4 cursor-pointer" onclick="toggleFAQ(5)">
+                        <h4 class="font-semibold text-gray-800 flex items-center justify-between">
+                            <span><i class="fas fa-question text-purple-500 mr-2"></i>スマートフォンでも使えますか？</span>
+                            <i class="fas fa-chevron-down text-gray-500" id="icon5"></i>
+                        </h4>
+                    </div>
+                    <div class="p-4 hidden" id="answer5">
+                        <p class="text-gray-600 text-sm">
+                            はい、レスポンシブデザインによりスマートフォンでも快適に使用できます。
+                            ただし、大量の項目を扱う場合はPCでの使用を推奨します。
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 第4章: ランダム生成機能 -->
-        <section id="random" class="mb-16">
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <h2 class="text-3xl font-bold mb-8 text-purple-700 border-b-2 border-purple-200 pb-4">
-                    <i class="fas fa-dice mr-3"></i>第4章: ランダム生成機能
-                </h2>
-
-                <div class="space-y-8">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-purple-600">ランダム生成の種類</h3>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div class="feature-card bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-lg">
-                                <h4 class="font-bold text-xl text-blue-700 mb-3">
-                                    <i class="fas fa-random mr-2"></i>完全ランダム
-                                </h4>
-                                <p class="mb-4">全カテゴリーからランダムに項目を選択し、予想外の組み合わせを生成します。</p>
-                                <div class="bg-blue-200 p-3 rounded">
-                                    <strong>適用場面:</strong> インスピレーション獲得、新しいアイデア探し
-                                </div>
-                            </div>
-                            <div class="feature-card bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-lg">
-                                <h4 class="font-bold text-xl text-green-700 mb-3">
-                                    <i class="fas fa-lock-open mr-2"></i>部分ランダム
-                                </h4>
-                                <p class="mb-4">固定したい項目はロックし、残りをランダム生成する高度な機能です。</p>
-                                <div class="bg-green-200 p-3 rounded">
-                                    <strong>適用場面:</strong> 特定要素を保持したバリエーション作成
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-purple-600">ロック機能の使い方</h3>
-                        <div class="bg-purple-50 border-l-4 border-purple-400 p-6">
-                            <div class="space-y-4">
-                                <div class="flex items-start space-x-3">
-                                    <div class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">1</div>
-                                    <div>
-                                        <strong>ロックボタンをクリック</strong>
-                                        <p class="text-sm text-gray-600">固定したいカテゴリーのロックボタン（🔒）をクリックして有効化</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start space-x-3">
-                                    <div class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">2</div>
-                                    <div>
-                                        <strong>項目を選択</strong>
-                                        <p class="text-sm text-gray-600">ロックしたカテゴリーで固定したい項目を選択</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start space-x-3">
-                                    <div class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">3</div>
-                                    <div>
-                                        <strong>部分ランダム実行</strong>
-                                        <p class="text-sm text-gray-600">「部分ランダム」ボタンでロックされていない項目のみランダム生成</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-purple-600">ランダム生成のコツ</h3>
-                        <div class="grid md:grid-cols-3 gap-4">
-                            <div class="bg-yellow-50 p-4 rounded-lg">
-                                <h4 class="font-bold text-yellow-700 mb-2">
-                                    <i class="fas fa-lightbulb mr-2"></i>効率的な探索
-                                </h4>
-                                <p class="text-sm">完全ランダムを複数回実行して、気に入った要素を見つけたら固定する</p>
-                            </div>
-                            <div class="bg-blue-50 p-4 rounded-lg">
-                                <h4 class="font-bold text-blue-700 mb-2">
-                                    <i class="fas fa-palette mr-2"></i>テーマ統一
-                                </h4>
-                                <p class="text-sm">背景や基本設定を固定して、表情やポーズだけをランダム化</p>
-                            </div>
-                            <div class="bg-green-50 p-4 rounded-lg">
-                                <h4 class="font-bold text-green-700 mb-2">
-                                    <i class="fas fa-sync-alt mr-2"></i>段階的調整
-                                </h4>
-                                <p class="text-sm">少しずつロック項目を増やして、理想の組み合わせに近づける</p>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Summary -->
+        <section class="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4">
+                <i class="fas fa-flag-checkered mr-2"></i>まとめ
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-semibold mb-3">デルム式プロンプトジェネレーターの特徴</h3>
+                    <ul class="space-y-2 text-sm opacity-90">
+                        <li>• 12カテゴリーの詳細設定による高品質プロンプト生成</li>
+                        <li>• 完全・部分ランダム機能で効率的なバリエーション作成</li>
+                        <li>• シーン別管理による体系的なプロジェクト管理</li>
+                        <li>• Wild Card対応で大量生成への対応</li>
+                    </ul>
                 </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-3">効果的な活用のために</h3>
+                    <ul class="space-y-2 text-sm opacity-90">
+                        <li>• 上から順番に設定して論理的なプロンプト作成</li>
+                        <li>• ロック機能を活用した効率的なバリエーション生成</li>
+                        <li>• シーン管理でプロジェクト別の整理</li>
+                        <li>• 定期的なバックアップで安全な管理</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-6 text-center">
+                <p class="text-lg font-medium">AI画像生成の新しい可能性を、デルム式プロンプトジェネレーターで探求してください！</p>
             </div>
         </section>
 
-        <!-- 第5章: シーン管理システム -->
-        <section id="scene-management" class="mb-16">
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <h2 class="text-3xl font-bold mb-8 text-pink-700 border-b-2 border-pink-200 pb-4">
-                    <i class="fas fa-folder mr-3"></i>第5章: シーン管理システム
-                </h2>
-
-                <div class="space-y-8">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-pink-600">シーン管理の概要</h3>
-                        <div class="bg-pink-50 p-6 rounded-lg">
-                            <p class="text-lg mb-4">
-                                シーン管理システムでは、生成したプロンプトを6つのシーンに分けて保存・管理できます。
-                                各シーンには最大10個のプロンプトを保存可能で、プロジェクトの体系的な管理が実現できます。
-                            </p>
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div class="bg-white p-4 rounded">
-                                    <h4 class="font-bold text-pink-700">📁 シーン1-6</h4>
-                                    <p class="text-sm">テーマ別にプロンプトを分類保存</p>
-                                </div>
-                                <div class="bg-white p-4 rounded">
-                                    <h4 class="font-bold text-pink-700">💾 各10パターン</h4>
-                                    <p class="text-sm">シーンごとに複数のバリエーションを保存</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-pink-600">保存操作の手順</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
-                                <div class="bg-pink-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">1</div>
-                                <div class="flex-1">
-                                    <h4 class="font-bold">プロンプト生成</h4>
-                                    <p class="text-sm text-gray-600">各項目を選択して理想的なプロンプトを作成</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
-                                <div class="bg-pink-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">2</div>
-                                <div class="flex-1">
-                                    <h4 class="font-bold">シーン選択</h4>
-                                    <p class="text-sm text-gray-600">保存したいシーン（1-6）を選択</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
-                                <div class="bg-pink-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">3</div>
-                                <div class="flex-1">
-                                    <h4 class="font-bold">保存実行</h4>
-                                    <p class="text-sm text-gray-600">「保存」ボタンクリックで即座に保存完了</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-pink-600">効果的なシーン活用法</h3>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <h4 class="font-bold mb-3 text-pink-700">テーマ別分類例</h4>
-                                <div class="space-y-2">
-                                    <div class="bg-red-100 p-2 rounded text-sm">
-                                        <strong>シーン1:</strong> ポートレート系
-                                    </div>
-                                    <div class="bg-blue-100 p-2 rounded text-sm">
-                                        <strong>シーン2:</strong> アクション系
-                                    </div>
-                                    <div class="bg-green-100 p-2 rounded text-sm">
-                                        <strong>シーン3:</strong> 日常系
-                                    </div>
-                                    <div class="bg-yellow-100 p-2 rounded text-sm">
-                                        <strong>シーン4:</strong> ファンタジー系
-                                    </div>
-                                    <div class="bg-purple-100 p-2 rounded text-sm">
-                                        <strong>シーン5:</strong> 特殊効果系
-                                    </div>
-                                    <div class="bg-gray-100 p-2 rounded text-sm">
-                                        <strong>シーン6:</strong> 実験・テスト用
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-3 text-pink-700">管理機能</h4>
-                                <ul class="space-y-2 text-sm">
-                                    <li class="flex items-center">
-                                        <i class="fas fa-eye text-green-500 mr-2"></i>
-                                        <strong>一覧表示:</strong> 保存済みプロンプトの確認
-                                    </li>
-                                    <li class="flex items-center">
-                                        <i class="fas fa-copy text-blue-500 mr-2"></i>
-                                        <strong>個別コピー:</strong> 特定プロンプトのコピー
-                                    </li>
-                                    <li class="flex items-center">
-                                        <i class="fas fa-trash text-red-500 mr-2"></i>
-                                        <strong>削除機能:</strong> 不要なプロンプトの削除
-                                    </li>
-                                    <li class="flex items-center">
-                                        <i class="fas fa-chart-bar text-purple-500 mr-2"></i>
-                                        <strong>保存状況:</strong> 「3/10」形式で保存数表示
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 第6章: Wild Card機能 -->
-        <section id="wildcard" class="mb-16">
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <h2 class="text-3xl font-bold mb-8 text-indigo-700 border-b-2 border-indigo-200 pb-4">
-                    <i class="fas fa-magic mr-3"></i>第6章: Wild Card機能
-                </h2>
-
-                <div class="space-y-8">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-indigo-600">Wild Cardとは</h3>
-                        <div class="bg-indigo-50 p-6 rounded-lg">
-                            <p class="text-lg mb-4">
-                                Wild Card機能は、保存した複数のプロンプトを特殊な形式に変換して、
-                                AI画像生成ツールで自動的にランダム選択される形式で出力する高度な機能です。
-                            </p>
-                            <div class="bg-white p-4 rounded border-l-4 border-indigo-400">
-                                <h4 class="font-bold mb-2">変換例</h4>
-                                <div class="text-sm">
-                                    <div class="mb-2"><strong>通常のプロンプト:</strong></div>
-                                    <div class="bg-gray-100 p-2 rounded mb-2">1girl, smile, school uniform</div>
-                                    <div class="bg-gray-100 p-2 rounded mb-3">1girl, surprised, dress</div>
-                                    <div class="mb-2"><strong>Wild Card形式:</strong></div>
-                                    <div class="bg-indigo-100 p-2 rounded">1girl, {smile|surprised}, {school uniform|dress}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-indigo-600">Wild Card生成手順</h3>
-                        <div class="space-y-4">
-                            <div class="bg-white border-2 border-indigo-200 p-4 rounded-lg">
-                                <div class="flex items-center space-x-3 mb-3">
-                                    <div class="bg-indigo-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">1</div>
-                                    <h4 class="font-bold text-lg">複数プロンプトの準備</h4>
-                                </div>
-                                <p class="text-sm ml-11">各シーンに複数のバリエーションプロンプトを保存しておきます。</p>
-                            </div>
-                            <div class="bg-white border-2 border-indigo-200 p-4 rounded-lg">
-                                <div class="flex items-center space-x-3 mb-3">
-                                    <div class="bg-indigo-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">2</div>
-                                    <h4 class="font-bold text-lg">全シーン一覧を開く</h4>
-                                </div>
-                                <p class="text-sm ml-11">「全シーン一覧」タブから保存済みの全プロンプトを確認します。</p>
-                            </div>
-                            <div class="bg-white border-2 border-indigo-200 p-4 rounded-lg">
-                                <div class="flex items-center space-x-3 mb-3">
-                                    <div class="bg-indigo-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">3</div>
-                                    <h4 class="font-bold text-lg">プロンプトのみコピー</h4>
-                                </div>
-                                <p class="text-sm ml-11">「プロンプトのみコピー」ボタンでWild Card形式に自動変換してコピーします。</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-indigo-600">実際の活用例</h3>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div class="bg-green-50 p-4 rounded-lg">
-                                <h4 class="font-bold text-green-700 mb-3">
-                                    <i class="fas fa-users mr-2"></i>キャラクターバリエーション
-                                </h4>
-                                <div class="text-sm space-y-2">
-                                    <div class="bg-white p-2 rounded">シーン1: 異なる髪色の同キャラ</div>
-                                    <div class="bg-white p-2 rounded">シーン2: 異なる表情の同キャラ</div>
-                                    <div class="bg-white p-2 rounded">シーン3: 異なる服装の同キャラ</div>
-                                    <div class="bg-green-200 p-2 rounded mt-2">
-                                        <strong>結果:</strong> 髪色×表情×服装の組み合わせを自動生成
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bg-blue-50 p-4 rounded-lg">
-                                <h4 class="font-bold text-blue-700 mb-3">
-                                    <i class="fas fa-camera mr-2"></i>撮影アングルバリエーション
-                                </h4>
-                                <div class="text-sm space-y-2">
-                                    <div class="bg-white p-2 rounded">シーン4: 正面、側面、背面</div>
-                                    <div class="bg-white p-2 rounded">シーン5: 上から、下から、斜め</div>
-                                    <div class="bg-white p-2 rounded">シーン6: 全身、上半身、クローズアップ</div>
-                                    <div class="bg-blue-200 p-2 rounded mt-2">
-                                        <strong>結果:</strong> 多角度撮影の自動バリエーション
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-indigo-600">Wild Card使用時の注意点</h3>
-                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
-                            <ul class="space-y-2">
-                                <li class="flex items-start">
-                                    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2 mt-1"></i>
-                                    <div>
-                                        <strong>AI生成ツール対応確認:</strong> 使用するAI画像生成ツールがWild Card形式に対応しているか事前に確認
-                                    </div>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-balance-scale text-yellow-500 mr-2 mt-1"></i>
-                                    <div>
-                                        <strong>バランス調整:</strong> 極端に異なる要素を組み合わせると予期しない結果になる可能性
-                                    </div>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-test-tube text-yellow-500 mr-2 mt-1"></i>
-                                    <div>
-                                        <strong>事前テスト:</strong> 少数の組み合わせで結果を確認してから大量生成を実行
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 第7章: 実践的な使用例 -->
-        <section id="examples" class="mb-16">
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <h2 class="text-3xl font-bold mb-8 text-red-700 border-b-2 border-red-200 pb-4">
-                    <i class="fas fa-hands-helping mr-3"></i>第7章: 実践的な使用例
-                </h2>
-
-                <div class="space-y-10">
-                    <!-- 初心者向け -->
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-green-600">
-                            <i class="fas fa-seedling mr-2"></i>初心者向け: 基本的なプロンプト作成
-                        </h3>
-                        <div class="bg-green-50 p-6 rounded-lg">
-                            <h4 class="font-bold mb-3">シンプルなポートレート作成</h4>
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <h5 class="font-bold mb-2 text-green-700">設定手順</h5>
-                                    <ol class="space-y-2 text-sm">
-                                        <li class="flex items-start">
-                                            <span class="bg-green-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs mr-2 mt-0.5">1</span>
-                                            <div><strong>スコア:</strong> best quality, masterpiece を選択</div>
-                                        </li>
-                                        <li class="flex items-start">
-                                            <span class="bg-green-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs mr-2 mt-0.5">2</span>
-                                            <div><strong>年齢:</strong> 20歳に設定</div>
-                                        </li>
-                                        <li class="flex items-start">
-                                            <span class="bg-green-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs mr-2 mt-0.5">3</span>
-                                            <div><strong>人数:</strong> 1人（女性）を選択</div>
-                                        </li>
-                                        <li class="flex items-start">
-                                            <span class="bg-green-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs mr-2 mt-0.5">4</span>
-                                            <div><strong>髪型:</strong> ロングヘア、金髪を選択</div>
-                                        </li>
-                                        <li class="flex items-start">
-                                            <span class="bg-green-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs mr-2 mt-0.5">5</span>
-                                            <div><strong>表情:</strong> 微笑みを選択</div>
-                                        </li>
-                                        <li class="flex items-start">
-                                            <span class="bg-green-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs mr-2 mt-0.5">6</span>
-                                            <div><strong>アングル:</strong> 正面を選択</div>
-                                        </li>
-                                    </ol>
-                                </div>
-                                <div>
-                                    <h5 class="font-bold mb-2 text-green-700">生成されるプロンプト例</h5>
-                                    <div class="bg-white p-4 rounded border text-sm">
-                                        <code class="text-green-800">
-                                            best quality, masterpiece, 20yo, 1girl, long hair, blonde hair, gentle smile, front view
-                                        </code>
-                                    </div>
-                                    <div class="mt-4 p-3 bg-green-100 rounded">
-                                        <p class="text-sm"><strong>ポイント:</strong> 最小限の設定でも高品質な結果が得られます。慣れてきたら徐々に項目を追加していきましょう。</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 中級者向け -->
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-blue-600">
-                            <i class="fas fa-chart-line mr-2"></i>中級者向け: 部分ランダムでバリエーション作成
-                        </h3>
-                        <div class="bg-blue-50 p-6 rounded-lg">
-                            <h4 class="font-bold mb-3">学園シリーズの作成</h4>
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <h5 class="font-bold mb-2 text-blue-700">固定設定（ロック有効）</h5>
-                                    <div class="space-y-2 text-sm">
-                                        <div class="bg-blue-200 p-2 rounded flex items-center">
-                                            <i class="fas fa-lock text-blue-700 mr-2"></i>
-                                            <strong>背景:</strong> 教室
-                                        </div>
-                                        <div class="bg-blue-200 p-2 rounded flex items-center">
-                                            <i class="fas fa-lock text-blue-700 mr-2"></i>
-                                            <strong>服装:</strong> 制服・学生服
-                                        </div>
-                                        <div class="bg-blue-200 p-2 rounded flex items-center">
-                                            <i class="fas fa-lock text-blue-700 mr-2"></i>
-                                            <strong>年齢:</strong> 18歳
-                                        </div>
-                                    </div>
-                                    <h5 class="font-bold mb-2 text-blue-700 mt-4">ランダム設定</h5>
-                                    <div class="space-y-2 text-sm">
-                                        <div class="bg-white p-2 rounded flex items-center">
-                                            <i class="fas fa-unlock text-gray-500 mr-2"></i>
-                                            <strong>髪型・髪色:</strong> ランダム
-                                        </div>
-                                        <div class="bg-white p-2 rounded flex items-center">
-                                            <i class="fas fa-unlock text-gray-500 mr-2"></i>
-                                            <strong>表情:</strong> ランダム
-                                        </div>
-                                        <div class="bg-white p-2 rounded flex items-center">
-                                            <i class="fas fa-unlock text-gray-500 mr-2"></i>
-                                            <strong>ポーズ:</strong> ランダム
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h5 class="font-bold mb-2 text-blue-700">活用方法</h5>
-                                    <ol class="space-y-2 text-sm">
-                                        <li>1. 部分ランダムを10回実行</li>
-                                        <li>2. 気に入った組み合わせをシーン1に保存</li>
-                                        <li>3. さらに10回実行してシーン2に保存</li>
-                                        <li>4. 最終的に60パターンの学園シリーズが完成</li>
-                                    </ol>
-                                    <div class="mt-4 p-3 bg-blue-100 rounded">
-                                        <p class="text-sm"><strong>効果:</strong> 統一感を保ちながら多様なバリエーションを効率的に作成できます。</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 上級者向け -->
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-purple-600">
-                            <i class="fas fa-crown mr-2"></i>上級者向け: Wild Card活用した大量生成
-                        </h3>
-                        <div class="bg-purple-50 p-6 rounded-lg">
-                            <h4 class="font-bold mb-3">マルチシーン・プロジェクト管理</h4>
-                            <div class="space-y-4">
-                                <div class="grid md:grid-cols-3 gap-4">
-                                    <div class="bg-white p-4 rounded-lg border-l-4 border-red-400">
-                                        <h5 class="font-bold text-red-700 mb-2">フェーズ1: ベース作成</h5>
-                                        <ul class="text-sm space-y-1">
-                                            <li>• シーン1-2: キャラクター基本設定</li>
-                                            <li>• シーン3-4: 服装バリエーション</li>
-                                            <li>• シーン5-6: ポーズ・表情パターン</li>
-                                        </ul>
-                                    </div>
-                                    <div class="bg-white p-4 rounded-lg border-l-4 border-green-400">
-                                        <h5 class="font-bold text-green-700 mb-2">フェーズ2: 詳細調整</h5>
-                                        <ul class="text-sm space-y-1">
-                                            <li>• 各シーンで10パターン作成</li>
-                                            <li>• 品質・アングル・背景の最適化</li>
-                                            <li>• 不要なパターンの削除・整理</li>
-                                        </ul>
-                                    </div>
-                                    <div class="bg-white p-4 rounded-lg border-l-4 border-blue-400">
-                                        <h5 class="font-bold text-blue-700 mb-2">フェーズ3: 大量生成</h5>
-                                        <ul class="text-sm space-y-1">
-                                            <li>• Wild Card形式で一括エクスポート</li>
-                                            <li>• AI生成ツールで自動バリエーション</li>
-                                            <li>• 数百～数千パターンの自動生成</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="bg-purple-100 p-4 rounded">
-                                    <h5 class="font-bold text-purple-700 mb-2">期待される結果</h5>
-                                    <p class="text-sm">
-                                        60個の基本パターンから、組み合わせにより数千パターンの高品質画像を自動生成。
-                                        手動では不可能な大規模なコンテンツ制作が実現可能。
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 第8章: よくある質問（FAQ） -->
-        <section id="faq" class="mb-16">
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <h2 class="text-3xl font-bold mb-8 text-teal-700 border-b-2 border-teal-200 pb-4">
-                    <i class="fas fa-question-circle mr-3"></i>第8章: よくある質問（FAQ）
-                </h2>
-
-                <div class="space-y-6">
-                    <div class="border border-teal-200 rounded-lg p-4">
-                        <h3 class="font-bold text-lg text-teal-700 mb-2">
-                            <i class="fas fa-question mr-2"></i>Q1: プロンプトが長すぎる場合はどうすればいいですか？
-                        </h3>
-                        <div class="bg-teal-50 p-3 rounded">
-                            <p><strong>A:</strong> 表示制御機能を使って不要な項目を非表示にすることで、プロンプトの長さを調整できます。また、重要度の低い項目の選択を解除することも効果的です。</p>
-                        </div>
-                    </div>
-
-                    <div class="border border-teal-200 rounded-lg p-4">
-                        <h3 class="font-bold text-lg text-teal-700 mb-2">
-                            <i class="fas fa-question mr-2"></i>Q2: ランダム生成の結果が気に入らない場合は？
-                        </h3>
-                        <div class="bg-teal-50 p-3 rounded">
-                            <p><strong>A:</strong> 気に入った要素があれば、その項目をロックしてから再度部分ランダムを実行してください。段階的に理想の組み合わせに近づけることができます。</p>
-                        </div>
-                    </div>
-
-                    <div class="border border-teal-200 rounded-lg p-4">
-                        <h3 class="font-bold text-lg text-teal-700 mb-2">
-                            <i class="fas fa-question mr-2"></i>Q3: 保存したプロンプトを編集することはできますか？
-                        </h3>
-                        <div class="bg-teal-50 p-3 rounded">
-                            <p><strong>A:</strong> 現在、保存されたプロンプトの直接編集はできません。変更したい場合は、元の設定を調整して新しいプロンプトとして再保存してください。</p>
-                        </div>
-                    </div>
-
-                    <div class="border border-teal-200 rounded-lg p-4">
-                        <h3 class="font-bold text-lg text-teal-700 mb-2">
-                            <i class="fas fa-question mr-2"></i>Q4: どのAI生成ツールでWild Cardが使えますか？
-                        </h3>
-                        <div class="bg-teal-50 p-3 rounded">
-                            <p><strong>A:</strong> Stable Diffusion WebUI、ComfyUI、NovelAI等の主要なツールで対応しています。使用前に各ツールのドキュメントで対応状況を確認してください。</p>
-                        </div>
-                    </div>
-
-                    <div class="border border-teal-200 rounded-lg p-4">
-                        <h3 class="font-bold text-lg text-teal-700 mb-2">
-                            <i class="fas fa-question mr-2"></i>Q5: データは保存されますか？
-                        </h3>
-                        <div class="bg-teal-50 p-3 rounded">
-                            <p><strong>A:</strong> ツールはブラウザのローカルストレージにデータを保存します。ブラウザのデータを削除すると保存したプロンプトも消去されるので、重要なデータは定期的にバックアップを取ることをお勧めします。</p>
-                        </div>
-                    </div>
-
-                    <div class="border border-teal-200 rounded-lg p-4">
-                        <h3 class="font-bold text-lg text-teal-700 mb-2">
-                            <i class="fas fa-question mr-2"></i>Q6: スマートフォンでも使用できますか？
-                        </h3>
-                        <div class="bg-teal-50 p-3 rounded">
-                            <p><strong>A:</strong> はい、レスポンシブデザインによりスマートフォンでも快適に使用できます。ただし、多数の項目を扱う場合はタブレットやPCでの使用を推奨します。</p>
-                        </div>
-                    </div>
-
-                    <div class="border border-teal-200 rounded-lg p-4">
-                        <h3 class="font-bold text-lg text-teal-700 mb-2">
-                            <i class="fas fa-question mr-2"></i>Q7: プロンプトに独自の単語を追加したい場合は？
-                        </h3>
-                        <div class="bg-teal-50 p-3 rounded">
-                            <p><strong>A:</strong> 生成されたプロンプトをコピーした後、手動で追加・編集することができます。ツール内での直接編集機能は今後のアップデートで検討中です。</p>
-                        </div>
-                    </div>
-
-                    <div class="border border-teal-200 rounded-lg p-4">
-                        <h3 class="font-bold text-lg text-teal-700 mb-2">
-                            <i class="fas fa-question mr-2"></i>Q8: 英語以外の言語での出力は可能ですか？
-                        </h3>
-                        <div class="bg-teal-50 p-3 rounded">
-                            <p><strong>A:</strong> 現在は英語のプロンプト生成のみ対応しています。これは多くのAI生成ツールが英語プロンプトに最適化されているためです。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 第9章: 活用事例集 -->
-        <section id="case-studies" class="mb-16">
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <h2 class="text-3xl font-bold mb-8 text-orange-700 border-b-2 border-orange-200 pb-4">
-                    <i class="fas fa-lightbulb mr-3"></i>第9章: 活用事例集
-                </h2>
-
-                <div class="space-y-10">
-                    <!-- ポートレート作成 -->
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-orange-600">
-                            <i class="fas fa-portrait mr-2"></i>ポートレート作成プロジェクト
-                        </h3>
-                        <div class="bg-orange-50 p-6 rounded-lg">
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <h4 class="font-bold mb-3 text-orange-700">プロジェクト概要</h4>
-                                    <p class="mb-4">SNS用プロフィール画像として使用する高品質ポートレートを複数パターン作成するプロジェクト。</p>
-                                    <h5 class="font-bold mb-2">使用した設定</h5>
-                                    <ul class="text-sm space-y-1">
-                                        <li>• <strong>スコア:</strong> score_9, masterpiece, photorealistic</li>
-                                        <li>• <strong>アングル:</strong> front view, portrait固定</li>
-                                        <li>• <strong>背景:</strong> シンプルな背景を複数パターン</li>
-                                        <li>• <strong>ランダム要素:</strong> 表情、髪型、服装</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold mb-3 text-orange-700">制作フロー</h4>
-                                    <ol class="text-sm space-y-2">
-                                        <li class="flex items-start">
-                                            <span class="bg-orange-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs mr-2 mt-0.5">1</span>
-                                            基本設定（年齢、体型）を固定
-                                        </li>
-                                        <li class="flex items-start">
-                                            <span class="bg-orange-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs mr-2 mt-0.5">2</span>
-                                            表情パターンを6種類作成
-                                        </li>
-                                        <li class="flex items-start">
-                                            <span class="bg-orange-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs mr-2 mt-0.5">3</span>
-                                            髪型×服装の組み合わせをランダム生成
-                                        </li>
-                                        <li class="flex items-start">
-                                            <span class="bg-orange-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs mr-2 mt-0.5">4</span>
-                                            Wild Card機能で一括生成
-                                        </li>
-                                    </ol>
-                                    <div class="mt-4 p-3 bg-orange-100 rounded">
-                                        <strong>結果:</strong> 36パターンのプロフェッショナルなポートレートを1時間で制作完了
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- シーン別撮影 -->
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-orange-600">
-                            <i class="fas fa-camera-retro mr-2"></i>シーン別撮影シミュレーション
-                        </h3>
-                        <div class="bg-blue-50 p-6 rounded-lg">
-                            <div class="grid md:grid-cols-3 gap-4">
-                                <div class="bg-white p-4 rounded-lg">
-                                    <h4 class="font-bold text-blue-700 mb-2">日常シーン（シーン1-2）</h4>
-                                    <ul class="text-sm space-y-1">
-                                        <li>• 背景: リビング、キッチン</li>
-                                        <li>• 服装: カジュアル、部屋着</li>
-                                        <li>• ポーズ: リラックスした自然なポーズ</li>
-                                    </ul>
-                                </div>
-                                <div class="bg-white p-4 rounded-lg">
-                                    <h4 class="font-bold text-blue-700 mb-2">アウトドアシーン（シーン3-4）</h4>
-                                    <ul class="text-sm space-y-1">
-                                        <li>• 背景: 公園、ビーチ、屋上</li>
-                                        <li>• 服装: アウトドア、ビキニ</li>
-                                        <li>• アングル: 自然光を活かした撮影</li>
-                                    </ul>
-                                </div>
-                                <div class="bg-white p-4 rounded-lg">
-                                    <h4 class="font-bold text-blue-700 mb-2">フォーマルシーン（シーン5-6）</h4>
-                                    <ul class="text-sm space-y-1">
-                                        <li>• 背景: オフィス、ホテル</li>
-                                        <li>• 服装: ビジネス、ドレス</li>
-                                        <li>• ポーズ: プロフェッショナルな雰囲気</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-4 bg-blue-100 rounded">
-                                <strong>活用効果:</strong> 一つのキャラクターで様々なシチュエーションの画像を体系的に作成。ストーリー性のあるコンテンツ制作に最適。
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- バリエーション制作 -->
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-orange-600">
-                            <i class="fas fa-palette mr-2"></i>大量バリエーション制作
-                        </h3>
-                        <div class="bg-green-50 p-6 rounded-lg">
-                            <div class="space-y-4">
-                                <div>
-                                    <h4 class="font-bold mb-3 text-green-700">プロジェクト: ゲーム用キャラクター画像</h4>
-                                    <p class="mb-4">オンラインゲームで使用するアバター画像を大量に作成するプロジェクト。プレイヤーの多様なニーズに対応するため、数百パターンが必要。</p>
-                                </div>
-                                <div class="grid md:grid-cols-2 gap-6">
-                                    <div>
-                                        <h5 class="font-bold mb-2 text-green-600">戦略的アプローチ</h5>
-                                        <ul class="text-sm space-y-1">
-                                            <li>• <strong>段階1:</strong> 基本パターン作成（各シーン10パターン×6シーン）</li>
-                                            <li>• <strong>段階2:</strong> カテゴリー別バリエーション（髪型、服装、表情）</li>
-                                            <li>• <strong>段階3:</strong> Wild Card組み合わせで大量生成</li>
-                                            <li>• <strong>段階4:</strong> 品質チェックと最終選定</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h5 class="font-bold mb-2 text-green-600">数値的成果</h5>
-                                        <div class="space-y-2 text-sm">
-                                            <div class="bg-white p-2 rounded">基本パターン: 60個</div>
-                                            <div class="bg-white p-2 rounded">Wild Card組み合わせ: 1,200パターン</div>
-                                            <div class="bg-white p-2 rounded">最終選定: 500個の高品質画像</div>
-                                            <div class="bg-green-200 p-2 rounded font-bold">制作時間: 従来の1/10に短縮</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 効率化事例 -->
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-orange-600">
-                            <i class="fas fa-rocket mr-2"></i>制作効率化の実例
-                        </h3>
-                        <div class="bg-yellow-50 p-6 rounded-lg">
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <h4 class="font-bold mb-3 text-yellow-700">従来の手動制作</h4>
-                                    <div class="space-y-2 text-sm">
-                                        <div class="bg-red-100 p-3 rounded">
-                                            <strong>時間:</strong> 1プロンプト作成に5-10分
-                                        </div>
-                                        <div class="bg-red-100 p-3 rounded">
-                                            <strong>品質:</strong> 人的ミスや表記ゆれが発生
-                                        </div>
-                                        <div class="bg-red-100 p-3 rounded">
-                                            <strong>管理:</strong> 作成したプロンプトの整理が困難
-                                        </div>
-                                        <div class="bg-red-100 p-3 rounded">
-                                            <strong>バリエーション:</strong> 手動で組み合わせを考える負担
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold mb-3 text-yellow-700">デルム式ツール使用後</h4>
-                                    <div class="space-y-2 text-sm">
-                                        <div class="bg-green-100 p-3 rounded">
-                                            <strong>時間:</strong> 1プロンプト作成に30秒以下
-                                        </div>
-                                        <div class="bg-green-100 p-3 rounded">
-                                            <strong>品質:</strong> 統一された高品質プロンプト
-                                        </div>
-                                        <div class="bg-green-100 p-3 rounded">
-                                            <strong>管理:</strong> シーン別の体系的管理
-                                        </div>
-                                        <div class="bg-green-100 p-3 rounded">
-                                            <strong>バリエーション:</strong> 自動生成で無限の組み合わせ
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mt-6 p-4 bg-yellow-200 rounded text-center">
-                                <p class="font-bold text-lg text-yellow-800">
-                                    <i class="fas fa-chart-line mr-2"></i>
-                                    制作効率: <span class="text-2xl text-green-600">20倍向上</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 第10章: まとめ -->
-        <section id="conclusion" class="mb-16">
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <h2 class="text-3xl font-bold mb-8 text-gray-700 border-b-2 border-gray-200 pb-4">
-                    <i class="fas fa-flag-checkered mr-3"></i>第10章: まとめ
-                </h2>
-
-                <div class="space-y-8">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-gray-600">デルム式プロンプトジェネレーターの価値</h3>
-                        <div class="bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-lg">
-                            <p class="text-lg leading-relaxed mb-4">
-                                デルム式プロンプトジェネレーターは、AI画像生成の可能性を最大限に引き出すための革新的なツールです。
-                                単なるプロンプト作成ツールを超えて、創作活動全体の効率化と品質向上を実現します。
-                            </p>
-                            <div class="grid md:grid-cols-3 gap-4">
-                                <div class="bg-white p-4 rounded text-center">
-                                    <i class="fas fa-clock text-blue-500 text-2xl mb-2"></i>
-                                    <h4 class="font-bold text-blue-700">時間効率</h4>
-                                    <p class="text-sm">制作時間を劇的に短縮</p>
-                                </div>
-                                <div class="bg-white p-4 rounded text-center">
-                                    <i class="fas fa-gem text-purple-500 text-2xl mb-2"></i>
-                                    <h4 class="font-bold text-purple-700">品質向上</h4>
-                                    <p class="text-sm">一貫した高品質な結果</p>
-                                </div>
-                                <div class="bg-white p-4 rounded text-center">
-                                    <i class="fas fa-infinity text-green-500 text-2xl mb-2"></i>
-                                    <h4 class="font-bold text-green-700">無限の可能性</h4>
-                                    <p class="text-sm">組み合わせによる無限のバリエーション</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-gray-600">習得レベル別の活用指針</h3>
-                        <div class="space-y-4">
-                            <div class="bg-green-50 border-l-4 border-green-400 p-4">
-                                <h4 class="font-bold text-green-700 mb-2">
-                                    <i class="fas fa-seedling mr-2"></i>初心者の方へ
-                                </h4>
-                                <p class="text-sm">まずは基本的な項目選択から始めて、プロンプト生成の仕組みを理解しましょう。慣れてきたらランダム機能を使って新しい発見を楽しんでください。</p>
-                            </div>
-                            <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
-                                <h4 class="font-bold text-blue-700 mb-2">
-                                    <i class="fas fa-chart-line mr-2"></i>中級者の方へ
-                                </h4>
-                                <p class="text-sm">部分ランダム機能とシーン管理を活用して、効率的なバリエーション作成を実践してください。固定要素とランダム要素のバランスが重要です。</p>
-                            </div>
-                            <div class="bg-purple-50 border-l-4 border-purple-400 p-4">
-                                <h4 class="font-bold text-purple-700 mb-2">
-                                    <i class="fas fa-crown mr-2"></i>上級者の方へ
-                                </h4>
-                                <p class="text-sm">Wild Card機能を駆使して大規模プロジェクトに取り組んでください。システマティックなアプローチで、従来不可能だった規模の創作活動が実現できます。</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-gray-600">継続的な改善のために</h3>
-                        <div class="bg-yellow-50 p-6 rounded-lg">
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <h4 class="font-bold text-yellow-700 mb-3">おすすめの練習方法</h4>
-                                    <ul class="space-y-2 text-sm">
-                                        <li class="flex items-start">
-                                            <i class="fas fa-play text-yellow-500 mr-2 mt-1"></i>
-                                            毎日少しずつ異なる組み合わせを試す
-                                        </li>
-                                        <li class="flex items-start">
-                                            <i class="fas fa-save text-yellow-500 mr-2 mt-1"></i>
-                                            気に入ったパターンは必ず保存する
-                                        </li>
-                                        <li class="flex items-start">
-                                            <i class="fas fa-sync-alt text-yellow-500 mr-2 mt-1"></i>
-                                            定期的にランダム生成で新しい発見を求める
-                                        </li>
-                                        <li class="flex items-start">
-                                            <i class="fas fa-share text-yellow-500 mr-2 mt-1"></i>
-                                            作成したプロンプトの結果を記録・分析する
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-yellow-700 mb-3">長期的な目標設定</h4>
-                                    <ul class="space-y-2 text-sm">
-                                        <li class="flex items-start">
-                                            <i class="fas fa-target text-yellow-500 mr-2 mt-1"></i>
-                                            自分だけのスタイルライブラリを構築
-                                        </li>
-                                        <li class="flex items-start">
-                                            <i class="fas fa-users text-yellow-500 mr-2 mt-1"></i>
-                                            コミュニティでの知識共有
-                                        </li>
-                                        <li class="flex items-start">
-                                            <i class="fas fa-lightbulb text-yellow-500 mr-2 mt-1"></i>
-                                            新しい表現技法の開発
-                                        </li>
-                                        <li class="flex items-start">
-                                            <i class="fas fa-graduation-cap text-yellow-500 mr-2 mt-1"></i>
-                                            プロレベルの制作技能習得
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-gray-600">最後に</h3>
-                        <div class="section-bg text-white p-8 rounded-lg text-center">
-                            <p class="text-xl mb-4 font-light">
-                                デルム式プロンプトジェネレーターは、あなたの創造性を技術で支援するツールです。
-                            </p>
-                            <p class="text-lg mb-6">
-                                このツールを通じて、より多くの人がAI画像生成の楽しさと可能性を発見し、
-                                素晴らしい作品を生み出していただければ幸いです。
-                            </p>
-                            <div class="text-2xl font-bold">
-                                <i class="fas fa-heart mr-2"></i>
-                                創造の旅を、一緒に楽しみましょう！
-                                <i class="fas fa-heart ml-2"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- Footer -->
+        <footer class="text-center py-6 text-gray-500 text-sm">
+            <p>© 2024 デルム式プロンプトジェネレーター 取扱説明書</p>
+            <p class="mt-2">本マニュアルの内容は予告なく変更される場合があります</p>
+        </footer>
     </div>
 
-    <!-- フッター -->
-    <footer class="gradient-bg text-white py-8 mt-16">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <h3 class="text-2xl font-bold mb-4">デルム式プロンプトジェネレーター</h3>
-            <p class="text-lg opacity-90 mb-4">AI画像生成の新しい可能性を切り開く</p>
-            <p class="opacity-75">© 2024 デルム式プロンプトジェネレーター. All rights reserved.</p>
-        </div>
-    </footer>
+    <script>
+        function toggleFAQ(num) {
+            const answer = document.getElementById('answer' + num);
+            const icon = document.getElementById('icon' + num);
+            
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                answer.classList.add('hidden');
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            }
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Print functionality
+        function printManual() {
+            window.print();
+        }
+
+        // Add print button
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('header .container');
+            const printBtn = document.createElement('button');
+            printBtn.innerHTML = '<i class="fas fa-print mr-2"></i>印刷';
+            printBtn.className = 'no-print bg-white text-purple-600 px-4 py-2 rounded shadow hover:bg-gray-100 transition-colors mt-4';
+            printBtn.onclick = printManual;
+            header.appendChild(printBtn);
+        });
+    </script>
 </body>
 </html>
     <script id="html_badge_script1">
         window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
-            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDkmj74QZr9NVp6GuEzNOkRiTfoZ647VI9cq66vGzChlE2%2FIP2Kt5w%2F5jbtxsgfnHA0QLiILutgtEbzuam9du8tNBeVn1J6fshbrEOvOFqHw7lIQG0x0Qb5hakPsnimwVjdea9kAE5Vromy05ZgpQ5HOrFDY8gJkjjO50PG8oH0ClmtVvOqfoRtbGlexU7IwzxKXrek5q6y0jBoZJR4cRi%2FRhwhil3zqrxCN1McVDl0Pt1CmVAnnA%2B%2BtaV41CPpZlKVdRPfJdOekTYLaTvktR4MU0zdXB7AVl9%2FfCn7bQ4admcnAn%2BY6tfht%2FuQsz71D54VLK0GVOQx%2BZ1Dj8o6Xopbx7DsgZgOL9nUJdeWQUcKIAfrZ20cjw2XBfYM%2Fy9BSPZsj8eXk9OsqoxbrVmNSh4rPMeu6v%2BLS3eTEdgtYEOh0wBDAj031xVeslSvte955XL60sruC%2ByAge2cotWxa8QJecwkhBpVkCpN5rev7LA76N2pCDXL9Wu5uKvCo%2B1oWHZ3BvuHuJiMNU%2BUAsKl4WutA%3D";
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDnfh4e2bVnk%2BjQ1hjlgyva%2F42%2Fu4apxCcBo0qCiWORVJ7hKOsMr%2F7xn6BP7bxGfiVPB6MRrKD0uW%2F2E7MwOQWD%2BaQUuLhmk6gY8w5paa06AW0qaPi2jeg1PCI7qN2dtV6g7Z6xdC7w9j1FrNwtbN9rYp6IPsWHoExUpRyPOM0JGuY3R1NIK6g5HG2sz1PlpOgHX1d7kj8tGpsfXaduEaUOjJSe0Tykva6uDhCKR5vxX3yxjnNrHVbEny87VrnEHTq6M0L8AuG%2BCjuRRozq0dhV6OzJQ4iHo3xxwLRgPD7VJN3u8a88kqpvhqn2kENBSl32ddsfjnnLk4cOjpqsKq86lHqo%2FslSUxpOb9XMjCY62KkQ2VFa4GE8Ot57LsUduHwPN8ZWu9rvNpuUg36gMGKYMX1dWToyb03hZUAJW6v8jTPgLK9qKnGQW0PVWUlVU%2F2RV%2FMFVoP1n92v6KC0%2BZPeA3EQSYPnbvuvhN223aHWyf5nXwBuZCeJrPsz6UrC1s8g%3D%3D";
         window.__genspark_locale = "ja-JP";
-        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDkmj74QZr9NVp6GuEzNOkRiTfoZ647VI9cq66vGzChlE2/IP2Kt5w/5jbtxsgfnHA0QLiILutgtEbzuam9du8tNBeVn1J6fshbrEOvOFqHw7lIQG0x0Qb5hakPsnimwVjdea9kAE5Vromy05ZgpQ5HOrFDY8gJkjjO50PG8oH0ClmtVvOqfoRtbGlexU7IwzxKXrek5q6y0jBoZJR4cRi/Rhwhil3zqrxCN1McVDl0Pt1CmVAnnA++taV41CPpZlKVdRPfJdOekTYLaTvktR4MU0zdXB7AVl9/fCn7bQ4admcnAn+Y6tfht/uQsz71D54VLK0GVOQx+Z1Dj8o6Xopbx7DsgZgOL9nUJdeWQUcKIAfrZ20cjw2XBfYM/y9BSPZsj8eXk9OsqoxbrVmNSh4rPMeu6v+LS3eTEdgtYEOh0wBDAj031xVeslSvte955XL60sruC+yAge2cotWxa8QJecwkhBpVkCpN5rev7LA76N2pCDXL9Wu5uKvCo+1oWHZ3BvuHuJiMNU+UAsKl4WutA=";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDnfh4e2bVnk+jQ1hjlgyva/42/u4apxCcBo0qCiWORVJ7hKOsMr/7xn6BP7bxGfiVPB6MRrKD0uW/2E7MwOQWD+aQUuLhmk6gY8w5paa06AW0qaPi2jeg1PCI7qN2dtV6g7Z6xdC7w9j1FrNwtbN9rYp6IPsWHoExUpRyPOM0JGuY3R1NIK6g5HG2sz1PlpOgHX1d7kj8tGpsfXaduEaUOjJSe0Tykva6uDhCKR5vxX3yxjnNrHVbEny87VrnEHTq6M0L8AuG+CjuRRozq0dhV6OzJQ4iHo3xxwLRgPD7VJN3u8a88kqpvhqn2kENBSl32ddsfjnnLk4cOjpqsKq86lHqo/slSUxpOb9XMjCY62KkQ2VFa4GE8Ot57LsUduHwPN8ZWu9rvNpuUg36gMGKYMX1dWToyb03hZUAJW6v8jTPgLK9qKnGQW0PVWUlVU/2RV/MFVoP1n92v6KC0+ZPeA3EQSYPnbvuvhN223aHWyf5nXwBuZCeJrPsz6UrC1s8g==";
     </script>
     
     <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
