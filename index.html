@@ -4,698 +4,855 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>デルム式プロンプトジェネレーター 取扱説明書</title>
+    <title>デルム式プロンプトジェネレーター v2.6 完全取扱説明書</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <style>
-        .section-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        .feature-card {
-            transition: transform 0.2s ease-in-out;
-        }
-        .feature-card:hover {
-            transform: translateY(-2px);
-        }
-         {
-            .no-print { display: none; }
-            body { font-size: 12px; }
-        }
+        body { font-family: 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif; }
+        .section-title { border-left: 4px solid #3b82f6; padding-left: 1rem; }
+        .feature-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .code-block { background-color: #f8f9fa; border-left: 4px solid #6c757d; }
+        .step-number { background: linear-gradient(45deg, #ff6b6b, #ee5a24); }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 leading-relaxed">
-    <!-- Header -->
-    <header class="section-header text-white py-8 mb-8">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl font-bold mb-2">
-                <i class="fas fa-magic mr-3"></i>デルム式プロンプトジェネレーター
-            </h1>
-            <p class="text-xl opacity-90">完全取扱説明書</p>
-            <p class="text-sm mt-2 opacity-75">AI画像生成用プロンプト作成ツール</p>
+
+<!-- ヘッダー -->
+<div class="feature-box text-white p-8 mb-8">
+    <div class="max-w-6xl mx-auto text-center">
+        <div class="flex items-center justify-center mb-4">
+            <i class="fas fa-magic text-4xl mr-4"></i>
+            <h1 class="text-4xl font-bold">デルム式プロンプトジェネレーター v2.6</h1>
         </div>
-    </header>
-
-    <div class="container mx-auto px-4 max-w-4xl">
-        <!-- Table of Contents -->
-        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-purple-700">
-                <i class="fas fa-list mr-2"></i>目次
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <a href="#overview" class="flex items-center p-3 rounded-lg hover:bg-purple-50 transition-colors">
-                    <i class="fas fa-info-circle text-purple-500 mr-3"></i>
-                    <span>1. ツール概要</span>
-                </a>
-                <a href="#basic-operations" class="flex items-center p-3 rounded-lg hover:bg-purple-50 transition-colors">
-                    <i class="fas fa-play-circle text-purple-500 mr-3"></i>
-                    <span>2. 基本操作</span>
-                </a>
-                <a href="#features" class="flex items-center p-3 rounded-lg hover:bg-purple-50 transition-colors">
-                    <i class="fas fa-cogs text-purple-500 mr-3"></i>
-                    <span>3. 機能詳細</span>
-                </a>
-                <a href="#random-generation" class="flex items-center p-3 rounded-lg hover:bg-purple-50 transition-colors">
-                    <i class="fas fa-dice text-purple-500 mr-3"></i>
-                    <span>4. ランダム生成</span>
-                </a>
-                <a href="#scene-management" class="flex items-center p-3 rounded-lg hover:bg-purple-50 transition-colors">
-                    <i class="fas fa-save text-purple-500 mr-3"></i>
-                    <span>5. シーン管理</span>
-                </a>
-                <a href="#wildcard" class="flex items-center p-3 rounded-lg hover:bg-purple-50 transition-colors">
-                    <i class="fas fa-copy text-purple-500 mr-3"></i>
-                    <span>6. Wild Card機能</span>
-                </a>
-                <a href="#examples" class="flex items-center p-3 rounded-lg hover:bg-purple-50 transition-colors">
-                    <i class="fas fa-lightbulb text-purple-500 mr-3"></i>
-                    <span>7. 使用例</span>
-                </a>
-                <a href="#faq" class="flex items-center p-3 rounded-lg hover:bg-purple-50 transition-colors">
-                    <i class="fas fa-question-circle text-purple-500 mr-3"></i>
-                    <span>8. よくある質問</span>
-                </a>
-            </div>
+        <p class="text-xl mb-4">完全取扱説明書 - GitHub版</p>
+        <div class="bg-white bg-opacity-20 rounded-lg p-4 inline-block">
+            <p class="text-lg"><i class="fas fa-link mr-2"></i>ツールURL:</p>
+            <p class="text-xl font-mono">https://dlmdlm3110.github.io/prompt-generator/</p>
         </div>
+    </div>
+</div>
 
-        <!-- Section 1: Overview -->
-        <section id="overview" class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-purple-700">
-                <i class="fas fa-info-circle mr-2"></i>1. ツール概要
-            </h2>
-            
-            <div class="mb-6">
-                <h3 class="text-xl font-semibold mb-3 text-gray-700">デルム式プロンプトジェネレーターとは</h3>
-                <p class="text-gray-600 mb-4">
-                    AI画像生成用のプロンプト（呪文）を効率的に作成・管理できる高機能Webツールです。
-                    複雑なプロンプトを手動で書く必要がなく、チェックボックスの選択だけで高品質なプロンプトを自動生成できます。
-                </p>
-            </div>
+<div class="max-w-6xl mx-auto px-4 pb-8">
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="feature-card bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
-                    <h4 class="font-semibold text-blue-800 mb-2">
-                        <i class="fas fa-star text-yellow-500 mr-2"></i>主要特徴
-                    </h4>
-                    <ul class="text-sm text-blue-700 space-y-1">
-                        <li>• 12カテゴリーの詳細設定</li>
-                        <li>• ランダム生成機能</li>
-                        <li>• シーン別保存管理</li>
-                        <li>• Wild Card対応</li>
-                        <li>• 品質向上タグ搭載</li>
-                    </ul>
-                </div>
-                <div class="feature-card bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg">
-                    <h4 class="font-semibold text-green-800 mb-2">
-                        <i class="fas fa-check-circle text-green-500 mr-2"></i>動作環境
-                    </h4>
-                    <ul class="text-sm text-green-700 space-y-1">
-                        <li>• モダンWebブラウザ</li>
-                        <li>• インストール不要</li>
-                        <li>• オフライン対応</li>
-                        <li>• レスポンシブデザイン</li>
-                        <li>• 外部依存なし</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+<!-- 目次 -->
+<div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+    <h2 class="section-title text-2xl font-bold mb-4"><i class="fas fa-list mr-2"></i>目次</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+        <div>
+            <p class="font-semibold mb-2">基本編</p>
+            <ul class="space-y-1 text-sm">
+                <li><a href="#overview" class="text-blue-600 hover:underline">1. ツール概要とv2.6新機能</a></li>
+                <li><a href="#basic" class="text-blue-600 hover:underline">2. 基本操作ガイド</a></li>
+                <li><a href="#features" class="text-blue-600 hover:underline">3. 詳細機能解説</a></li>
+                <li><a href="#exclusion" class="text-blue-600 hover:underline">4. 除外機能システム</a></li>
+                <li><a href="#random" class="text-blue-600 hover:underline">5. ランダム生成機能</a></li>
+            </ul>
+        </div>
+        <div>
+            <p class="font-semibold mb-2">応用編</p>
+            <ul class="space-y-1 text-sm">
+                <li><a href="#scene" class="text-blue-600 hover:underline">6. シーン管理システム</a></li>
+                <li><a href="#textbox" class="text-blue-600 hover:underline">7. テキストボックス対応</a></li>
+                <li><a href="#examples" class="text-blue-600 hover:underline">8. 実践的使用例</a></li>
+                <li><a href="#workflow" class="text-blue-600 hover:underline">9. 効率的ワークフロー</a></li>
+                <li><a href="#faq" class="text-blue-600 hover:underline">10. FAQ・まとめ</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
 
-        <!-- Section 2: Basic Operations -->
-        <section id="basic-operations" class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-purple-700">
-                <i class="fas fa-play-circle mr-2"></i>2. 基本操作
-            </h2>
-            
-            <div class="space-y-6">
-                <div class="border-l-4 border-blue-500 pl-4">
-                    <h3 class="text-lg font-semibold mb-2">基本的な使用手順</h3>
-                    <ol class="list-decimal list-inside space-y-2 text-gray-600">
-                        <li>各カテゴリーから希望する項目をチェック</li>
-                        <li>「生成されたプロンプト」で結果を確認</li>
-                        <li>必要に応じてランダム生成機能を使用</li>
-                        <li>気に入ったプロンプトをシーンに保存</li>
-                        <li>Wild Card形式で一括コピー</li>
-                    </ol>
-                </div>
-
-                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                    <h4 class="font-semibold text-yellow-800 mb-2">
-                        <i class="fas fa-lightbulb text-yellow-600 mr-2"></i>操作のコツ
-                    </h4>
-                    <p class="text-yellow-700 text-sm">
-                        項目は上から順番に設定することで、論理的で一貫性のあるプロンプトが生成されます。
-                        まずスコアで品質を設定し、キャラクター → シーン → 撮影の順で進めましょう。
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 3: Features -->
-        <section id="features" class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-purple-700">
-                <i class="fas fa-cogs mr-2"></i>3. 機能詳細
-            </h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div class="feature-card bg-gradient-to-br from-red-50 to-red-100 p-4 rounded-lg">
-                    <h4 class="font-semibold text-red-800 mb-2">
-                        <i class="fas fa-trophy text-yellow-500 mr-2"></i>スコア（品質）
-                    </h4>
-                    <p class="text-sm text-red-700">
-                        score_9, masterpiece, best qualityなど品質向上タグで高品質な画像生成を実現
-                    </p>
-                </div>
-
-                <div class="feature-card bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
-                    <h4 class="font-semibold text-blue-800 mb-2">
-                        <i class="fas fa-user text-blue-500 mr-2"></i>キャラクター設定
-                    </h4>
-                    <p class="text-sm text-blue-700">
-                        年齢、人数、髪型・髪色、表情、体型の詳細設定でキャラクターを定義
-                    </p>
-                </div>
-
-                <div class="feature-card bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg">
-                    <h4 class="font-semibold text-green-800 mb-2">
-                        <i class="fas fa-tshirt text-green-500 mr-2"></i>服装・ポーズ
-                    </h4>
-                    <p class="text-sm text-green-700">
-                        豊富な服装オプションとポーズ設定で多様なシーンを表現
-                    </p>
-                </div>
-
-                <div class="feature-card bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg">
-                    <h4 class="font-semibold text-purple-800 mb-2">
-                        <i class="fas fa-heart text-pink-500 mr-2"></i>フェチ・SM拘束
-                    </h4>
-                    <p class="text-sm text-purple-700">
-                        特殊な嗜好や拘束系要素に対応した専門的なタグ設定
-                    </p>
-                </div>
-
-                <div class="feature-card bg-gradient-to-br from-indigo-50 to-indigo-100 p-4 rounded-lg">
-                    <h4 class="font-semibold text-indigo-800 mb-2">
-                        <i class="fas fa-camera text-indigo-500 mr-2"></i>アングル
-                    </h4>
-                    <p class="text-sm text-indigo-700">
-                        正面、側面、上から、下からなど撮影アングルの詳細指定
-                    </p>
-                </div>
-
-                <div class="feature-card bg-gradient-to-br from-gray-50 to-gray-100 p-4 rounded-lg">
-                    <h4 class="font-semibold text-gray-800 mb-2">
-                        <i class="fas fa-image text-gray-500 mr-2"></i>背景
-                    </h4>
-                    <p class="text-sm text-gray-700">
-                        寝室、浴室、屋外など様々なロケーション設定で環境を演出
-                    </p>
-                </div>
-            </div>
-
-            <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <h4 class="font-semibold text-blue-800 mb-2">
-                    <i class="fas fa-eye text-blue-600 mr-2"></i>表示制御機能
-                </h4>
-                <p class="text-blue-700 text-sm mb-2">
-                    各カテゴリーごとに表示・非表示を切り替え可能。固定した項目を非表示にして、
-                    ランダム要素のみを表示する高度な制御ができます。
-                </p>
-                <div class="text-xs text-blue-600">
-                    例：年齢と人数を固定 → 表示OFF → 服装やポーズのランダム要素のみ表示
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 4: Random Generation -->
-        <section id="random-generation" class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-purple-700">
-                <i class="fas fa-dice mr-2"></i>4. ランダム生成機能
-            </h2>
-            
-            <div class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded-lg">
-                        <h4 class="font-semibold text-orange-800 mb-3">
-                            <i class="fas fa-random text-orange-600 mr-2"></i>完全ランダム生成
-                        </h4>
-                        <p class="text-sm text-orange-700 mb-3">
-                            全カテゴリーからランダムに項目を選択して、予想外の組み合わせを生成
-                        </p>
-                        <div class="text-xs text-orange-600 bg-white p-2 rounded">
-                            用途：インスピレーション獲得、新しいアイデア発見
-                        </div>
-                    </div>
-
-                    <div class="bg-gradient-to-br from-cyan-50 to-cyan-100 p-4 rounded-lg">
-                        <h4 class="font-semibold text-cyan-800 mb-3">
-                            <i class="fas fa-lock text-cyan-600 mr-2"></i>部分ランダム生成
-                        </h4>
-                        <p class="text-sm text-cyan-700 mb-3">
-                            固定したい項目をロック、残りをランダム生成する高度な機能
-                        </p>
-                        <div class="text-xs text-cyan-600 bg-white p-2 rounded">
-                            用途：特定要素を保持したバリエーション作成
-                        </div>
-                    </div>
-                </div>
-
-                <div class="border-l-4 border-green-500 pl-4">
-                    <h4 class="font-semibold text-green-800 mb-2">ロック機能の使い方</h4>
-                    <ol class="list-decimal list-inside space-y-1 text-sm text-green-700">
-                        <li>固定したいカテゴリーの「ロック」ボタンをクリック</li>
-                        <li>ロックされた項目は色が変わり固定状態に</li>
-                        <li>「部分ランダム」で未ロック項目のみランダム生成</li>
-                        <li>ロック解除は再度ボタンをクリック</li>
-                    </ol>
-                </div>
-
-                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                    <h4 class="font-semibold text-yellow-800 mb-2">
-                        <i class="fas fa-star text-yellow-600 mr-2"></i>効果的な活用例
-                    </h4>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-                        <div class="text-yellow-700">
-                            <strong>パターン1:</strong><br>
-                            年齢・人数固定<br>
-                            → 服装・ポーズランダム
-                        </div>
-                        <div class="text-yellow-700">
-                            <strong>パターン2:</strong><br>
-                            基本設定固定<br>
-                            → アングル・背景ランダム
-                        </div>
-                        <div class="text-yellow-700">
-                            <strong>パターン3:</strong><br>
-                            キャラ設定固定<br>
-                            → 特殊要素ランダム
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 5: Scene Management -->
-        <section id="scene-management" class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-purple-700">
-                <i class="fas fa-save mr-2"></i>5. シーン管理システム
-            </h2>
-            
-            <div class="space-y-6">
-                <div class="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg">
-                    <h4 class="font-semibold text-purple-800 mb-2">シーン管理の概要</h4>
-                    <p class="text-purple-700 text-sm">
-                        6つのシーンに各10パターンまでプロンプトを保存可能。
-                        プロジェクトごと、テーマごとに整理して管理できます。
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <h4 class="font-semibold text-gray-800 mb-3">
-                            <i class="fas fa-folder text-blue-500 mr-2"></i>保存機能
-                        </h4>
-                        <ul class="space-y-2 text-sm text-gray-600">
-                            <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                                シーン1〜6の独立した管理
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                                各シーン最大10パターン保存
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                                保存数のリアルタイム表示
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                                ワンクリック保存・削除
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 class="font-semibold text-gray-800 mb-3">
-                            <i class="fas fa-cog text-purple-500 mr-2"></i>管理機能
-                        </h4>
-                        <ul class="space-y-2 text-sm text-gray-600">
-                            <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                                個別プロンプト削除
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                                シーン全体クリア
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                                保存済み一覧表示
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                                シーン間移動・コピー
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <h4 class="font-semibold text-blue-800 mb-2">
-                        <i class="fas fa-lightbulb text-blue-600 mr-2"></i>シーン活用のヒント
-                    </h4>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm text-blue-700">
-                        <div>
-                            <strong>シーン1-2:</strong> メインキャラクター用
-                        </div>
-                        <div>
-                            <strong>シーン3-4:</strong> サブキャラクター用
-                        </div>
-                        <div>
-                            <strong>シーン5-6:</strong> 特殊シーン・実験用
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 6: Wild Card -->
-        <section id="wildcard" class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-purple-700">
-                <i class="fas fa-copy mr-2"></i>6. Wild Card機能
-            </h2>
-            
-            <div class="space-y-6">
-                <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg">
-                    <h4 class="font-semibold text-green-800 mb-2">Wild Cardとは</h4>
-                    <p class="text-green-700 text-sm">
-                        複数のプロンプトを <code class="bg-white px-1 rounded">{prompt1|prompt2|prompt3}</code> 形式で組み合わせ、
-                        AI生成時にランダムで選択される仕組みです。大量のバリエーション生成に最適。
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="border border-gray-200 rounded-lg p-4">
-                        <h4 class="font-semibold text-gray-800 mb-3">
-                            <i class="fas fa-clipboard text-blue-500 mr-2"></i>コピー機能
-                        </h4>
-                        <ul class="space-y-2 text-sm text-gray-600">
-                            <li>• プロンプトのみコピー（余計なテキスト除外）</li>
-                            <li>• 全シーン一括コピー</li>
-                            <li>• Wild Card形式自動変換</li>
-                            <li>• クリップボード直接コピー</li>
-                        </ul>
-                    </div>
-
-                    <div class="border border-gray-200 rounded-lg p-4">
-                        <h4 class="font-semibold text-gray-800 mb-3">
-                            <i class="fas fa-magic text-purple-500 mr-2"></i>活用方法
-                        </h4>
-                        <ul class="space-y-2 text-sm text-gray-600">
-                            <li>• バッチ生成でバリエーション作成</li>
-                            <li>• 同一設定での表情バリエーション</li>
-                            <li>• ポーズや角度の複数パターン</li>
-                            <li>• 服装の着せ替えパターン</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                    <h4 class="font-semibold text-gray-800 mb-3">Wild Card使用例</h4>
-                    <div class="space-y-3">
-                        <div class="bg-white p-3 rounded border-l-4 border-blue-500">
-                            <div class="text-xs text-gray-500 mb-1">元のプロンプト（3パターン）:</div>
-                            <div class="text-sm font-mono text-gray-700">
-                                1. score_9, 1girl, smile, school uniform<br>
-                                2. score_9, 1girl, embarrassed, school uniform<br>
-                                3. score_9, 1girl, surprised, school uniform
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <i class="fas fa-arrow-down text-purple-500"></i>
-                        </div>
-                        <div class="bg-white p-3 rounded border-l-4 border-green-500">
-                            <div class="text-xs text-gray-500 mb-1">Wild Card形式:</div>
-                            <div class="text-sm font-mono text-green-700">
-                                score_9, 1girl, {smile|embarrassed|surprised}, school uniform
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 7: Examples -->
-        <section id="examples" class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-purple-700">
-                <i class="fas fa-lightbulb mr-2"></i>7. 実践的な使用例
-            </h2>
-            
-            <div class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
-                        <h4 class="font-semibold text-blue-800 mb-2">
-                            <i class="fas fa-user-graduate text-blue-600 mr-2"></i>初心者向け
-                        </h4>
-                        <div class="text-sm text-blue-700 space-y-1">
-                            <p><strong>手順:</strong></p>
-                            <p>1. スコア: best quality選択</p>
-                            <p>2. 年齢: 20選択</p>
-                            <p>3. 表情: smile選択</p>
-                            <p>4. 服装: school uniform選択</p>
-                            <p>5. 生成されたプロンプトをコピー</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg">
-                        <h4 class="font-semibold text-green-800 mb-2">
-                            <i class="fas fa-user text-green-600 mr-2"></i>中級者向け
-                        </h4>
-                        <div class="text-sm text-green-700 space-y-1">
-                            <p><strong>バリエーション作成:</strong></p>
-                            <p>1. 基本設定を固定（ロック）</p>
-                            <p>2. 表情・ポーズをランダム生成</p>
-                            <p>3. 気に入ったパターンを各シーンに保存</p>
-                            <p>4. Wild Card形式で一括コピー</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg">
-                        <h4 class="font-semibold text-purple-800 mb-2">
-                            <i class="fas fa-user-cog text-purple-600 mr-2"></i>上級者向け
-                        </h4>
-                        <div class="text-sm text-purple-700 space-y-1">
-                            <p><strong>大量生成ワークフロー:</strong></p>
-                            <p>1. テーマ別にシーン1-6使い分け</p>
-                            <p>2. 表示制御で変動要素のみ表示</p>
-                            <p>3. 複数パターンを系統的に生成</p>
-                            <p>4. Wild Card化して効率的に実行</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                    <h4 class="font-semibold text-yellow-800 mb-3">
-                        <i class="fas fa-rocket text-yellow-600 mr-2"></i>効率的なワークフロー例
-                    </h4>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <h5 class="font-medium text-yellow-800 mb-2">ポートレート制作</h5>
-                            <ol class="list-decimal list-inside text-sm text-yellow-700 space-y-1">
-                                <li>スコア・年齢・人数を設定</li>
-                                <li>髪型・体型を固定</li>
-                                <li>表情・アングルをランダム</li>
-                                <li>10パターン生成してシーン1に保存</li>
-                                <li>Wild Card化して一括生成</li>
-                            </ol>
-                        </div>
-                        <div>
-                            <h5 class="font-medium text-yellow-800 mb-2">コスプレ撮影</h5>
-                            <ol class="list-decimal list-inside text-sm text-yellow-700 space-y-1">
-                                <li>キャラクター設定を固定</li>
-                                <li>服装を特定のコスプレに設定</li>
-                                <li>ポーズ・背景をランダム</li>
-                                <li>シーン2-3に分けて保存</li>
-                                <li>最適なパターンを選択</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 8: FAQ -->
-        <section id="faq" class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-purple-700">
-                <i class="fas fa-question-circle mr-2"></i>8. よくある質問
-            </h2>
-            
-            <div class="space-y-4">
-                <div class="border border-gray-200 rounded-lg">
-                    <div class="bg-gray-50 p-4 cursor-pointer" onclick="toggleFAQ(1)">
-                        <h4 class="font-semibold text-gray-800 flex items-center justify-between">
-                            <span><i class="fas fa-question text-purple-500 mr-2"></i>プロンプトが生成されません</span>
-                            <i class="fas fa-chevron-down text-gray-500" id="icon1"></i>
-                        </h4>
-                    </div>
-                    <div class="p-4 hidden" id="answer1">
-                        <p class="text-gray-600 text-sm">
-                            少なくとも1つのカテゴリーから項目を選択してください。
-                            また、ブラウザのJavaScriptが有効になっているか確認してください。
-                        </p>
-                    </div>
-                </div>
-
-                <div class="border border-gray-200 rounded-lg">
-                    <div class="bg-gray-50 p-4 cursor-pointer" onclick="toggleFAQ(2)">
-                        <h4 class="font-semibold text-gray-800 flex items-center justify-between">
-                            <span><i class="fas fa-question text-purple-500 mr-2"></i>ランダム生成で同じパターンが出ます</span>
-                            <i class="fas fa-chevron-down text-gray-500" id="icon2"></i>
-                        </h4>
-                    </div>
-                    <div class="p-4 hidden" id="answer2">
-                        <p class="text-gray-600 text-sm">
-                            選択可能な項目数が少ない場合、同じパターンが出やすくなります。
-                            より多くのカテゴリーを有効にするか、部分ランダム機能を活用してください。
-                        </p>
-                    </div>
-                </div>
-
-                <div class="border border-gray-200 rounded-lg">
-                    <div class="bg-gray-50 p-4 cursor-pointer" onclick="toggleFAQ(3)">
-                        <h4 class="font-semibold text-gray-800 flex items-center justify-between">
-                            <span><i class="fas fa-question text-purple-500 mr-2"></i>保存したプロンプトが消えました</span>
-                            <i class="fas fa-chevron-down text-gray-500" id="icon3"></i>
-                        </h4>
-                    </div>
-                    <div class="p-4 hidden" id="answer3">
-                        <p class="text-gray-600 text-sm">
-                            データはブラウザのローカルストレージに保存されます。
-                            ブラウザのデータをクリアすると消える可能性があります。
-                            重要なプロンプトは外部にバックアップすることを推奨します。
-                        </p>
-                    </div>
-                </div>
-
-                <div class="border border-gray-200 rounded-lg">
-                    <div class="bg-gray-50 p-4 cursor-pointer" onclick="toggleFAQ(4)">
-                        <h4 class="font-semibold text-gray-800 flex items-center justify-between">
-                            <span><i class="fas fa-question text-purple-500 mr-2"></i>Wild Card形式が正しく動作しません</span>
-                            <i class="fas fa-chevron-down text-gray-500" id="icon4"></i>
-                        </h4>
-                    </div>
-                    <div class="p-4 hidden" id="answer4">
-                        <p class="text-gray-600 text-sm">
-                            使用するAI生成ソフトウェアがWild Card形式に対応している必要があります。
-                            対応していない場合は、個別のプロンプトとして使用してください。
-                        </p>
-                    </div>
-                </div>
-
-                <div class="border border-gray-200 rounded-lg">
-                    <div class="bg-gray-50 p-4 cursor-pointer" onclick="toggleFAQ(5)">
-                        <h4 class="font-semibold text-gray-800 flex items-center justify-between">
-                            <span><i class="fas fa-question text-purple-500 mr-2"></i>スマートフォンでも使えますか？</span>
-                            <i class="fas fa-chevron-down text-gray-500" id="icon5"></i>
-                        </h4>
-                    </div>
-                    <div class="p-4 hidden" id="answer5">
-                        <p class="text-gray-600 text-sm">
-                            はい、レスポンシブデザインによりスマートフォンでも快適に使用できます。
-                            ただし、大量の項目を扱う場合はPCでの使用を推奨します。
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Summary -->
-        <section class="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg shadow-lg p-6 mb-8">
-            <h2 class="text-2xl font-bold mb-4">
-                <i class="fas fa-flag-checkered mr-2"></i>まとめ
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <h3 class="text-lg font-semibold mb-3">デルム式プロンプトジェネレーターの特徴</h3>
-                    <ul class="space-y-2 text-sm opacity-90">
-                        <li>• 12カテゴリーの詳細設定による高品質プロンプト生成</li>
-                        <li>• 完全・部分ランダム機能で効率的なバリエーション作成</li>
-                        <li>• シーン別管理による体系的なプロジェクト管理</li>
-                        <li>• Wild Card対応で大量生成への対応</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-3">効果的な活用のために</h3>
-                    <ul class="space-y-2 text-sm opacity-90">
-                        <li>• 上から順番に設定して論理的なプロンプト作成</li>
-                        <li>• ロック機能を活用した効率的なバリエーション生成</li>
-                        <li>• シーン管理でプロジェクト別の整理</li>
-                        <li>• 定期的なバックアップで安全な管理</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="mt-6 text-center">
-                <p class="text-lg font-medium">AI画像生成の新しい可能性を、デルム式プロンプトジェネレーターで探求してください！</p>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="text-center py-6 text-gray-500 text-sm">
-            <p>© 2024 デルム式プロンプトジェネレーター 取扱説明書</p>
-            <p class="mt-2">本マニュアルの内容は予告なく変更される場合があります</p>
-        </footer>
+<!-- 1. ツール概要 -->
+<div id="overview" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+    <h2 class="section-title text-2xl font-bold mb-6"><i class="fas fa-info-circle mr-2"></i>1. ツール概要とv2.6新機能</h2>
+    
+    <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-3">デルム式プロンプトジェネレーターとは</h3>
+        <p class="text-gray-700 mb-4">AI画像生成用の高品質プロンプトを効率的に作成するための専用ツールです。複雑なプロンプト作成を直感的な操作で実現し、プロフェッショナルな画像生成をサポートします。</p>
     </div>
 
-    <script>
-        function toggleFAQ(num) {
-            const answer = document.getElementById('answer' + num);
-            const icon = document.getElementById('icon' + num);
-            
-            if (answer.classList.contains('hidden')) {
-                answer.classList.remove('hidden');
-                icon.classList.remove('fa-chevron-down');
-                icon.classList.add('fa-chevron-up');
-            } else {
-                answer.classList.add('hidden');
-                icon.classList.remove('fa-chevron-up');
-                icon.classList.add('fa-chevron-down');
-            }
-        }
+    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+        <h4 class="font-semibold text-blue-800 mb-2"><i class="fas fa-star mr-2"></i>v2.6の主要アップデート</h4>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <h5 class="font-medium mb-2">🎯 必須選択保証システム</h5>
+                <p class="text-sm text-gray-700">ランダム生成時に各カテゴリーで必ず1つは選択されることを保証</p>
+            </div>
+            <div>
+                <h5 class="font-medium mb-2">❌ 除外機能システム</h5>
+                <p class="text-sm text-gray-700">不要な項目をランダム生成から除外する3段階選択</p>
+            </div>
+            <div>
+                <h5 class="font-medium mb-2">📋 テキストボックス対応</h5>
+                <p class="text-sm text-gray-700">「Prompts from file or textbox」形式での一括コピー</p>
+            </div>
+            <div>
+                <h5 class="font-medium mb-2">🎨 視覚的状態表示</h5>
+                <p class="text-sm text-gray-700">選択・未選択・除外状態の明確な色分け表示</p>
+            </div>
+        </div>
+    </div>
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+    <div class="bg-gray-50 rounded-lg p-4">
+        <h4 class="font-semibold mb-2">対応カテゴリー一覧</h4>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
+            <div class="bg-white p-2 rounded">🏆 スコア（品質）</div>
+            <div class="bg-white p-2 rounded">👤 年齢</div>
+            <div class="bg-white p-2 rounded">👥 人数</div>
+            <div class="bg-white p-2 rounded">💇 髪型・髪色</div>
+            <div class="bg-white p-2 rounded">😊 表情</div>
+            <div class="bg-white p-2 rounded">👗 体型</div>
+            <div class="bg-white p-2 rounded">👘 服装</div>
+            <div class="bg-white p-2 rounded">🤸 ポーズ</div>
+            <div class="bg-white p-2 rounded">💕 フェチ</div>
+            <div class="bg-white p-2 rounded">⛓️ SM・拘束</div>
+            <div class="bg-white p-2 rounded">📸 アングル</div>
+            <div class="bg-white p-2 rounded">🏞️ 背景</div>
+        </div>
+    </div>
+</div>
 
-        // Print functionality
-        function printManual() {
-            window.print();
-        }
+<!-- 2. 基本操作ガイド -->
+<div id="basic" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+    <h2 class="section-title text-2xl font-bold mb-6"><i class="fas fa-mouse-pointer mr-2"></i>2. 基本操作ガイド</h2>
+    
+    <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-4">画面構成</h3>
+        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+            <p class="font-medium mb-2">項目配置順序（上から下）：</p>
+            <ol class="list-decimal list-inside space-y-1 text-sm">
+                <li>スコア（品質向上タグ）</li>
+                <li>年齢設定</li>
+                <li>人数構成</li>
+                <li>髪型・髪色</li>
+                <li>表情</li>
+                <li>体型</li>
+                <li>服装</li>
+                <li>ポーズ</li>
+                <li>フェチ要素</li>
+                <li>SM・拘束</li>
+                <li>アングル</li>
+                <li>背景</li>
+                <li>表示制御オプション</li>
+                <li>ランダム生成設定</li>
+                <li>生成されたプロンプト</li>
+            </ol>
+        </div>
+    </div>
 
-        // Add print button
-        document.addEventListener('DOMContentLoaded', function() {
-            const header = document.querySelector('header .container');
-            const printBtn = document.createElement('button');
-            printBtn.innerHTML = '<i class="fas fa-print mr-2"></i>印刷';
-            printBtn.className = 'no-print bg-white text-purple-600 px-4 py-2 rounded shadow hover:bg-gray-100 transition-colors mt-4';
-            printBtn.onclick = printManual;
-            header.appendChild(printBtn);
-        });
-    </script>
+    <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-4">3段階選択システム</h3>
+        <div class="grid md:grid-cols-3 gap-4">
+            <div class="border-2 border-gray-300 rounded-lg p-4 text-center">
+                <div class="w-16 h-16 mx-auto mb-2 bg-gray-100 border-2 border-gray-300 rounded flex items-center justify-center">
+                    <span class="text-gray-500">⬜</span>
+                </div>
+                <h4 class="font-semibold">未選択</h4>
+                <p class="text-sm text-gray-600">ランダム選択の対象</p>
+            </div>
+            <div class="border-2 border-blue-500 rounded-lg p-4 text-center bg-blue-50">
+                <div class="w-16 h-16 mx-auto mb-2 bg-blue-500 text-white rounded flex items-center justify-center">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h4 class="font-semibold text-blue-700">選択中</h4>
+                <p class="text-sm text-gray-600">現在選択されている</p>
+            </div>
+            <div class="border-2 border-red-500 rounded-lg p-4 text-center bg-red-50">
+                <div class="w-16 h-16 mx-auto mb-2 bg-red-500 text-white rounded flex items-center justify-center">
+                    <i class="fas fa-times"></i>
+                </div>
+                <h4 class="font-semibold text-red-700">除外中</h4>
+                <p class="text-sm text-gray-600">ランダムから除外</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+        <h4 class="font-semibold text-yellow-800 mb-2"><i class="fas fa-hand-pointer mr-2"></i>操作方法</h4>
+        <div class="space-y-2 text-sm">
+            <p><strong>左クリック：</strong>選択/未選択の切り替え</p>
+            <p><strong>右クリック：</strong>除外モードへの切り替え</p>
+            <p><strong>除外解除：</strong>除外項目を再度右クリック</p>
+        </div>
+    </div>
+</div>
+
+<!-- 3. 詳細機能解説 -->
+<div id="features" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+    <h2 class="section-title text-2xl font-bold mb-6"><i class="fas fa-cogs mr-2"></i>3. 詳細機能解説</h2>
+    
+    <div class="space-y-6">
+        <div>
+            <h3 class="text-xl font-semibold mb-3">🏆 スコアタグ（品質向上）</h3>
+            <div class="bg-gradient-to-r from-yellow-100 to-orange-100 rounded-lg p-4">
+                <p class="mb-2">AI画像生成の品質を向上させる重要なタグ群です。</p>
+                <div class="grid md:grid-cols-2 gap-2 text-sm">
+                    <div><strong>score_9:</strong> 最高品質</div>
+                    <div><strong>score_8_up:</strong> 高品質以上</div>
+                    <div><strong>masterpiece:</strong> 傑作品質</div>
+                    <div><strong>best quality:</strong> 最高品質</div>
+                    <div><strong>photorealistic:</strong> フォトリアル</div>
+                    <div><strong>8k resolution:</strong> 8K解像度</div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="text-xl font-semibold mb-3">👤 キャラクター設定</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <h4 class="font-medium mb-2">年齢・人数</h4>
+                    <p class="text-sm text-gray-700">キャラクターの基本属性を設定。年齢は具体的な数値、人数は構成を指定。</p>
+                </div>
+                <div class="bg-purple-50 rounded-lg p-4">
+                    <h4 class="font-medium mb-2">髪型・髪色</h4>
+                    <p class="text-sm text-gray-700">外見の重要な要素。2つのサブカテゴリーで独立して設定可能。</p>
+                </div>
+                <div class="bg-green-50 rounded-lg p-4">
+                    <h4 class="font-medium mb-2">表情</h4>
+                    <p class="text-sm text-gray-700">キャラクターの感情表現。笑顔から複雑な表情まで幅広く対応。</p>
+                </div>
+                <div class="bg-pink-50 rounded-lg p-4">
+                    <h4 class="font-medium mb-2">体型</h4>
+                    <p class="text-sm text-gray-700">身体的特徴の詳細設定。プロポーションの調整に使用。</p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="text-xl font-semibold mb-3">🎬 シーン設定</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-red-50 rounded-lg p-4">
+                    <h4 class="font-medium mb-2">服装・ポーズ</h4>
+                    <p class="text-sm text-gray-700">衣装と身体の位置・動きを設定。シーンの雰囲気を決定する重要要素。</p>
+                </div>
+                <div class="bg-orange-50 rounded-lg p-4">
+                    <h4 class="font-medium mb-2">フェチ・SM</h4>
+                    <p class="text-sm text-gray-700">特殊な要素や拘束系アイテム。上級者向けの詳細設定。</p>
+                </div>
+                <div class="bg-indigo-50 rounded-lg p-4">
+                    <h4 class="font-medium mb-2">アングル</h4>
+                    <p class="text-sm text-gray-700">カメラアングルの設定。撮影視点を決定し、構図に大きく影響。</p>
+                </div>
+                <div class="bg-teal-50 rounded-lg p-4">
+                    <h4 class="font-medium mb-2">背景</h4>
+                    <p class="text-sm text-gray-700">シーンの環境設定。最後に設定してシーン全体を完成。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 4. 除外機能システム -->
+<div id="exclusion" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+    <h2 class="section-title text-2xl font-bold mb-6"><i class="fas fa-ban mr-2"></i>4. 除外機能システム</h2>
+    
+    <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-3">除外機能の概要</h3>
+        <p class="text-gray-700 mb-4">v2.6で追加された重要機能で、ランダム生成時に特定の項目を選択候補から除外できます。これにより、より安全で意図した範囲でのランダム生成が可能になります。</p>
+        
+        <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-4">
+            <h4 class="font-semibold text-red-800 mb-2">除外機能の利点</h4>
+            <ul class="list-disc list-inside space-y-1 text-sm text-red-700">
+                <li>好ましくない要素の確実な回避</li>
+                <li>テーマに沿った一貫性のあるプロンプト生成</li>
+                <li>安心してランダム機能を使用可能</li>
+                <li>効率的なバリエーション作成</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-3">操作方法詳細</h3>
+        <div class="bg-gray-50 rounded-lg p-4">
+            <div class="grid md:grid-cols-3 gap-4 mb-4">
+                <div class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mx-auto mb-2">1</div>
+                <div class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mx-auto mb-2">2</div>
+                <div class="step-number text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mx-auto mb-2">3</div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-4 text-center text-sm">
+                <div>
+                    <p class="font-medium mb-1">除外したい項目を特定</p>
+                    <p class="text-gray-600">不要な要素を決める</p>
+                </div>
+                <div>
+                    <p class="font-medium mb-1">右クリックで除外設定</p>
+                    <p class="text-gray-600">赤色表示に変化</p>
+                </div>
+                <div>
+                    <p class="font-medium mb-1">ランダム生成実行</p>
+                    <p class="text-gray-600">除外項目は選ばれない</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-3">実用例</h3>
+        <div class="code-block rounded-lg p-4">
+            <h4 class="font-medium mb-2">例：服装カテゴリーでの除外設定</h4>
+            <div class="grid md:grid-cols-2 gap-4 text-sm">
+                <div>
+                    <p class="font-medium mb-2">設定状況：</p>
+                    <ul class="space-y-1">
+                        <li>✅ 制服（選択中）</li>
+                        <li>⬜ ドレス（ランダム候補）</li>
+                        <li>⬜ ビキニ（ランダム候補）</li>
+                        <li>❌ 裸（除外）</li>
+                        <li>❌ 下着（除外）</li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="font-medium mb-2">ランダム結果：</p>
+                    <p class="text-gray-700">制服は固定のまま、ドレスまたはビキニから選択。裸と下着は絶対に選ばれません。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 5. ランダム生成機能 -->
+<div id="random" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+    <h2 class="section-title text-2xl font-bold mb-6"><i class="fas fa-dice mr-2"></i>5. ランダム生成機能</h2>
+    
+    <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-3">v2.6の必須選択保証システム</h3>
+        <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-4">
+            <h4 class="font-semibold text-green-800 mb-2">重要な改善点</h4>
+            <p class="text-green-700 text-sm">v2.6では、ランダム生成時に各カテゴリーで必ず1つは選択されることが保証されます。これにより、不完全なプロンプトが生成されることがなくなりました。</p>
+        </div>
+    </div>
+
+    <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-3">2つのランダム生成モード</h3>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="border-2 border-purple-500 rounded-lg p-4">
+                <h4 class="font-semibold text-purple-700 mb-3"><i class="fas fa-random mr-2"></i>完全ランダム生成</h4>
+                <div class="space-y-2 text-sm">
+                    <p><strong>動作：</strong>全カテゴリーでランダム選択</p>
+                    <p><strong>保証：</strong>各カテゴリーで必ず1つ選択</p>
+                    <p><strong>除外：</strong>除外項目は選択されない</p>
+                    <p><strong>用途：</strong>完全に新しいプロンプト生成</p>
+                </div>
+            </div>
+            <div class="border-2 border-blue-500 rounded-lg p-4">
+                <h4 class="font-semibold text-blue-700 mb-3"><i class="fas fa-lock mr-2"></i>部分ランダム生成</h4>
+                <div class="space-y-2 text-sm">
+                    <p><strong>動作：</strong>ロック以外でランダム選択</p>
+                    <p><strong>保証：</strong>非ロックカテゴリーで必ず1つ選択</p>
+                    <p><strong>固定：</strong>ロック項目は維持</p>
+                    <p><strong>用途：</strong>一部固定でのバリエーション作成</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-3">ランダム生成の制御フロー</h3>
+        <div class="bg-gray-50 rounded-lg p-4">
+            <div class="space-y-3">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">1</div>
+                    <p class="text-sm">各カテゴリーの状態をチェック（ロック・除外・通常）</p>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">2</div>
+                    <p class="text-sm">除外項目を選択候補から除去</p>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">3</div>
+                    <p class="text-sm">残った選択肢から必ず1つをランダム選択</p>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">4</div>
+                    <p class="text-sm">全カテゴリーでの選択完了を確認</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+        <h4 class="font-semibold text-blue-800 mb-2">ランダム生成のコツ</h4>
+        <ul class="list-disc list-inside space-y-1 text-sm text-blue-700">
+            <li>重要な要素は事前に固定（ロック）しておく</li>
+            <li>不要な要素は除外設定で排除</li>
+            <li>テーマに合わない要素も除外対象に</li>
+            <li>部分ランダムで段階的にバリエーション作成</li>
+        </ul>
+    </div>
+</div>
+
+<!-- 6. シーン管理システム -->
+<div id="scene" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+    <h2 class="section-title text-2xl font-bold mb-6"><i class="fas fa-folder-open mr-2"></i>6. シーン管理システム</h2>
+    
+    <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-3">シーン機能の概要</h3>
+        <p class="text-gray-700 mb-4">デルム式プロンプトジェネレーターでは、生成したプロンプトをシーン1〜6に分類して保存できます。各シーンには最大10個のプロンプトを保存可能で、プロジェクト管理に最適です。</p>
+        
+        <div class="grid md:grid-cols-3 gap-4 mb-4">
+            <div class="bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-lg p-4 text-center">
+                <i class="fas fa-layer-group text-2xl mb-2"></i>
+                <h4 class="font-semibold">6つのシーン</h4>
+                <p class="text-sm">独立した保存領域</p>
+            </div>
+            <div class="bg-gradient-to-r from-green-400 to-green-600 text-white rounded-lg p-4 text-center">
+                <i class="fas fa-list-ol text-2xl mb-2"></i>
+                <h4 class="font-semibold">各10パターン</h4>
+                <p class="text-sm">シーンごとに最大10個</p>
+            </div>
+            <div class="bg-gradient-to-r from-purple-400 to-purple-600 text-white rounded-lg p-4 text-center">
+                <i class="fas fa-project-diagram text-2xl mb-2"></i>
+                <h4 class="font-semibold">プロジェクト管理</h4>
+                <p class="text-sm">体系的な整理</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-3">シーン保存の操作手順</h3>
+        <div class="bg-gray-50 rounded-lg p-4">
+            <div class="grid md:grid-cols-4 gap-4 mb-4">
+                <div class="text-center">
+                    <div class="step-number text-white rounded-full w-10 h-10 flex items-center justify-center text-sm font-bold mx-auto mb-2">1</div>
+                    <p class="text-sm font-medium">プロンプト生成</p>
+                </div>
+                <div class="text-center">
+                    <div class="step-number text-white rounded-full w-10 h-10 flex items-center justify-center text-sm font-bold mx-auto mb-2">2</div>
+                    <p class="text-sm font-medium">シーン選択</p>
+                </div>
+                <div class="text-center">
+                    <div class="step-number text-white rounded-full w-10 h-10 flex items-center justify-center text-sm font-bold mx-auto mb-2">3</div>
+                    <p class="text-sm font-medium">保存実行</p>
+                </div>
+                <div class="text-center">
+                    <div class="step-number text-white rounded-full w-10 h-10 flex items-center justify-center text-sm font-bold mx-auto mb-2">4</div>
+                    <p class="text-sm font-medium">管理・確認</p>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-4 gap-4 text-xs text-gray-600">
+                <p>設定を調整してプロンプトを生成</p>
+                <p>ドロップダウンで保存先シーンを選択</p>
+                <p>「シーンに保存」ボタンをクリック</p>
+                <p>シーン管理タブで確認・編集</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-3">シーン活用例</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="border rounded-lg p-4">
+                <h4 class="font-semibold mb-2 text-blue-700">🎭 テーマ別管理</h4>
+                <ul class="text-sm space-y-1">
+                    <li>シーン1: 学園もの</li>
+                    <li>シーン2: ファンタジー</li>
+                    <li>シーン3: 現代風</li>
+                    <li>シーン4: 和風</li>
+                    <li>シーン5: SF・未来</li>
+                    <li>シーン6: クラシック</li>
+                </ul>
+            </div>
+            <div class="border rounded-lg p-4">
+                <h4 class="font-semibold mb-2 text-green-700">📅 制作段階別管理</h4>
+                <ul class="text-sm space-y-1">
+                    <li>シーン1: 初期アイデア</li>
+                    <li>シーン2: ラフ案</li>
+                    <li>シーン3: 改良版</li>
+                    <li>シーン4: 完成候補</li>
+                    <li>シーン5: 最終版</li>
+                    <li>シーン6: 予備・保管</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-orange-50 border-l-4 border-orange-400 p-4">
+        <h4 class="font-semibold text-orange-800 mb-2">シーン管理のベストプラクティス</h4>
+        <ul class="list-disc list-inside space-y-1 text-sm text-orange-700">
+            <li>明確な分類基準を決めてからシーン分け</li>
+            <li>各シーンに説明的な名称を付ける（心の中で）</li>
+            <li>定期的に不要なプロンプトを削除して整理</li>
+            <li>重要なプロンプトは複数シーンにバックアップ保存</li>
+        </ul>
+    </div>
+</div>
+
+<!-- 7. テキストボックス対応 -->
+<div id="textbox" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+    <h2 class="section-title text-2xl font-bold mb-6"><i class="fas fa-file-alt mr-2"></i>7. テキストボックス対応機能</h2>
+    
+    <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-3">v2.5で追加された重要機能</h3>
+        <p class="text-gray-700 mb-4">「Prompts from file or textbox」形式での一括コピー機能が追加されました。これにより、Stable Diffusion WebUIなどのツールで直接使用できる形式でプロンプトをエクスポートできます。</p>
+        
+        <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-4">
+            <h4 class="font-semibold text-green-800 mb-2">テキストボックス形式の特徴</h4>
+            <ul class="list-disc list-inside space-y-1 text-sm text-green-700">
+                <li>各プロンプトが1行ずつ改行して表示</li>
+                <li>余計なテキストを除いてプロンプトのみを出力</li>
+                <li>.txtファイルとして保存可能</li>
+                <li>AI画像生成ツールで直接読み込み可能</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-3">出力形式の比較</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="border-2 border-red-300 rounded-lg p-4">
+                <h4 class="font-semibold text-red-700 mb-2">❌ 旧形式（Wild Card）</h4>
+                <div class="code-block rounded p-2 text-xs font-mono">
+                    {prompt1|prompt2|prompt3}
+                </div>
+                <p class="text-sm text-gray-600 mt-2">特定ツール専用の形式</p>
+            </div>
+            <div class="border-2 border-green-500 rounded-lg p-4">
+                <h4 class="font-semibold text-green-700 mb-2">✅ 新形式（テキストボックス）</h4>
+                <div class="code-block rounded p-2 text-xs font-mono">
+                    score_9, masterpiece, 1girl, blonde hair<br>
+                    score_8_up, best quality, 1girl, brown hair<br>
+                    high quality, ultra detailed, 1girl, black hair
+                </div>
+                <p class="text-sm text-gray-600 mt-2">汎用的で使いやすい形式</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-3">使用手順</h3>
+        <div class="bg-gray-50 rounded-lg p-4">
+            <div class="space-y-3">
+                <div class="flex items-start">
+                    <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">1</div>
+                    <div>
+                        <p class="font-medium">全シーン一覧タブを開く</p>
+                        <p class="text-sm text-gray-600">保存された全プロンプトを確認</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">2</div>
+                    <div>
+                        <p class="font-medium">「全シーンコピー」ボタンをクリック</p>
+                        <p class="text-sm text-gray-600">全プロンプトがクリップボードにコピー</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">3</div>
+                    <div>
+                        <p class="font-medium">テキストエディタに貼り付け</p>
+                        <p class="text-sm text-gray-600">メモ帳などで.txtファイルとして保存</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">4</div>
+                    <div>
+                        <p class="font-medium">AI画像生成ツールで使用</p>
+                        <p class="text-sm text-gray-600">「Prompts from file or textbox」で読み込み</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-purple-50 border-l-4 border-purple-400 p-4">
+        <h4 class="font-semibold text-purple-800 mb-2">対応ツール例</h4>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <div>
+                <p class="font-medium mb-1">Stable Diffusion WebUI</p>
+                <p class="text-gray-700">「Prompts from file or textbox」機能で直接読み込み</p>
+            </div>
+            <div>
+                <p class="font-medium mb-1">ComfyUI</p>
+                <p class="text-gray-700">テキストファイルからのバッチ処理</p>
+            </div>
+            <div>
+                <p class="font-medium mb-1">各種AI画像生成サービス</p>
+                <p class="text-gray-700">テキスト形式でのプロンプト入力</p>
+            </div>
+            <div>
+                <p class="font-medium mb-1">スクリプト処理</p>
+                <p class="text-gray-700">自動化スクリプトでの一括処理</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 8. 実践的使用例 -->
+<div id="examples" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+    <h2 class="section-title text-2xl font-bold mb-6"><i class="fas fa-lightbulb mr-2"></i>8. 実践的使用例</h2>
+    
+    <div class="space-y-6">
+        <div>
+            <h3 class="text-xl font-semibold mb-4">🔰 初心者向け：基本的なプロンプト作成</h3>
+            <div class="bg-blue-50 rounded-lg p-4">
+                <h4 class="font-semibold mb-2">目標：学園もののキャラクター作成</h4>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-medium mb-2">手順：</p>
+                        <ol class="list-decimal list-inside space-y-1 text-sm">
+                            <li>スコア：「best quality」を選択</li>
+                            <li>年齢：「18 years old」を選択</li>
+                            <li>人数：「1girl」を選択</li>
+                            <li>髪型：「long hair」を選択</li>
+                            <li>髪色：「brown hair」を選択</li>
+                            <li>表情：「smile」を選択</li>
+                            <li>服装：「school uniform」を選択</li>
+                            <li>背景：「classroom」を選択</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <p class="font-medium mb-2">生成結果例：</p>
+                        <div class="code-block rounded p-2 text-xs font-mono">
+                            best quality, 18 years old, 1girl, long hair, brown hair, smile, school uniform, classroom
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">シンプルで確実な基本プロンプト</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="text-xl font-semibold mb-4">🎯 中級者向け：除外機能活用</h3>
+            <div class="bg-yellow-50 rounded-lg p-4">
+                <h4 class="font-semibold mb-2">目標：上品なポートレート専用のランダム生成</h4>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-medium mb-2">設定方法：</p>
+                        <ol class="list-decimal list-inside space-y-1 text-sm">
+                            <li>フェチ・SM項目を全て除外設定</li>
+                            <li>過激な服装を除外設定</li>
+                            <li>不適切なポーズを除外設定</li>
+                            <li>上品な表情のみ残す</li>
+                            <li>部分ランダム生成実行</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <p class="font-medium mb-2">効果：</p>
+                        <ul class="list-disc list-inside space-y-1 text-sm">
+                            <li>意図しない要素の完全回避</li>
+                            <li>安心してランダム機能使用</li>
+                            <li>一貫した品質のプロンプト</li>
+                            <li>効率的なバリエーション作成</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="text-xl font-semibold mb-4">🚀 上級者向け：大量生成とバッチ処理</h3>
+            <div class="bg-green-50 rounded-lg p-4">
+                <h4 class="font-semibold mb-2">目標：100枚の多様なキャラクター画像生成</h4>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-medium mb-2">戦略：</p>
+                        <ol class="list-decimal list-inside space-y-1 text-sm">
+                            <li>基本品質タグを固定</li>
+                            <li>テーマごとに6シーンに分類</li>
+                            <li>各シーンで10パターン作成</li>
+                            <li>全シーンコピーでテキストファイル化</li>
+                            <li>WebUIでバッチ処理実行</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <p class="font-medium mb-2">管理方法：</p>
+                        <ul class="list-disc list-inside space-y-1 text-sm">
+                            <li>ファイル名：delm_prompts_20241205.txt</li>
+                            <li>60個のプロンプトを1ファイルに</li>
+                            <li>WebUIの「Prompts from file」で読み込み</li>
+                            <li>一晩で大量生成完了</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 9. 効率的ワークフロー -->
+<div id="workflow" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+    <h2 class="section-title text-2xl font-bold mb-6"><i class="fas fa-stream mr-2"></i>9. 効率的ワークフロー</h2>
+    
+    <div class="space-y-6">
+        <div>
+            <h3 class="text-xl font-semibold mb-4">📋 プロジェクト企画段階</h3>
+            <div class="bg-gray-50 rounded-lg p-4">
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="text-center">
+                        <i class="fas fa-thinking text-3xl text-blue-500 mb-2"></i>
+                        <h4 class="font-semibold mb-2">1. コンセプト決定</h4>
+                        <p class="text-sm text-gray-600">テーマ、雰囲気、対象層を明確化</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-ban text-3xl text-red-500 mb-2"></i>
+                        <h4 class="font-semibold mb-2">2. 除外項目設定</h4>
+                        <p class="text-sm text-gray-600">NGな要素を事前に除外設定</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-folder text-3xl text-green-500 mb-2"></i>
+                        <h4 class="font-semibold mb-2">3. シーン分類計画</h4>
+                        <p class="text-sm text-gray-600">6シーンの使い分けを決定</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="text-xl font-semibold mb-4">🎨 制作段階</h3>
+            <div class="space-y-4">
+                <div class="border-l-4 border-blue-500 pl-4">
+                    <h4 class="font-semibold text-blue-700 mb-2">ベースプロンプト作成</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                        <li>スコアタグで品質基準を設定</li>
+                        <li>基本的な要素（年齢、人数）を固定</li>
+                        <li>コンセプトに合う基本設定を完成</li>
+                        <li>シーン1に保存してベースとして活用</li>
+                    </ul>
+                </div>
+                <div class="border-l-4 border-green-500 pl-4">
+                    <h4 class="font-semibold text-green-700 mb-2">バリエーション展開</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                        <li>ベース要素をロック（固定）</li>
+                        <li>変更したい要素のみランダム化</li>
+                        <li>部分ランダム生成で効率的にバリエーション作成</li>
+                        <li>良いものをシーン2〜6に分類保存</li>
+                    </ul>
+                </div>
+                <div class="border-l-4 border-purple-500 pl-4">
+                    <h4 class="font-semibold text-purple-700 mb-2">最終調整・統合</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                        <li>各シーンの内容を見直し</li>
+                        <li>重複や不要なプロンプトを削除</li>
+                        <li>最終的な品質チェック</li>
+                        <li>全シーンコピーでエクスポート準備</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="text-xl font-semibold mb-4">🚀 大量生成段階</h3>
+            <div class="bg-purple-50 rounded-lg p-4">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <h4 class="font-semibold mb-2">エクスポート作業</h4>
+                        <ol class="list-decimal list-inside space-y-1 text-sm">
+                            <li>全シーン一覧で最終確認</li>
+                            <li>「全シーンコピー」でプロンプト取得</li>
+                            <li>テキストファイルに保存</li>
+                            <li>ファイル名に日付・プロジェクト名を記載</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">AI生成実行</h4>
+                        <ol class="list-decimal list-inside space-y-1 text-sm">
+                            <li>WebUIの「Prompts from file」で読み込み</li>
+                            <li>生成設定（モデル、サイズ等）を統一</li>
+                            <li>バッチ処理で一括生成開始</li>
+                            <li>結果を確認して追加調整</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-orange-50 border-l-4 border-orange-400 p-4">
+        <h4 class="font-semibold text-orange-800 mb-2">🏆 効率化のポイント</h4>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <div>
+                <p class="font-medium mb-1">時間短縮テクニック</p>
+                <ul class="list-disc list-inside space-y-1 text-orange-700">
+                    <li>テンプレート的なベース設定を作成</li>
+                    <li>除外設定を事前に済ませる</li>
+                    <li>シーン分類ルールを統一</li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-medium mb-1">品質向上テクニック</p>
+                <ul class="list-disc list-inside space-y-1 text-orange-700">
+                    <li>スコアタグを必ず設定</li>
+                    <li>段階的な品質チェック</li>
+                    <li>一貫性のあるテーマ維持</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 10. FAQ・まとめ -->
+<div id="faq" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+    <h2 class="section-title text-2xl font-bold mb-6"><i class="fas fa-question-circle mr-2"></i>10. よくある質問とまとめ</h2>
+    
+    <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-4">❓ よくある質問</h3>
+        <div class="space-y-4">
+            <div class="border rounded-lg p-4">
+                <h4 class="font-semibold text-blue-700 mb-2">Q. ランダム生成で選択されない項目があるのはなぜ？</h4>
+                <p class="text-sm text-gray-700">A. v2.6では各カテゴリーで必ず1つは選択されるよう改善されました。もし選択されない場合は、除外設定になっている可能性があります。右クリックで除外状態を解除してください。</p>
+            </div>
+            <div class="border rounded-lg p-4">
+                <h4 class="font-semibold text-blue-700 mb-2">Q. 除外した項目が赤く表示されません</h4>
+                <p class="text-sm text-gray-700">A. 右クリックで除外設定を行ってください。左クリックは通常の選択/未選択切り替えです。除外設定が正しく行われると、項目が赤背景で表示されます。</p>
+            </div>
+            <div class="border rounded-lg p-4">
+                <h4 class="font-semibold text-blue-700 mb-2">Q. シーンに保存したプロンプトはどこで確認できますか？</h4>
+                <p class="text-sm text-gray-700">A. 「シーン管理」タブで各シーンの保存内容を確認できます。また、「全シーン一覧」タブで全シーンのプロンプトをまとめて表示できます。</p>
+            </div>
+            <div class="border rounded-lg p-4">
+                <h4 class="font-semibold text-blue-700 mb-2">Q. テキストボックス形式でコピーできません</h4>
+                <p class="text-sm text-gray-700">A. 「全シーン一覧」タブの「全シーンコピー」ボタンを使用してください。v2.5以降でテキストボックス形式（1行ずつ改行）でコピーされます。</p>
+            </div>
+            <div class="border rounded-lg p-4">
+                <h4 class="font-semibold text-blue-700 mb-2">Q. 髪型・髪色でランダムが機能しない場合は？</h4>
+                <p class="text-sm text-gray-700">A. v2.4で修正済みです。髪型と髪色は独立したサブカテゴリーとして正常にランダム生成されます。問題が続く場合はページを再読み込みしてください。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-4">🎯 v2.6活用のまとめ</h3>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-blue-50 rounded-lg p-4">
+                <h4 class="font-semibold text-blue-700 mb-3">💡 効果的な使い方</h4>
+                <ul class="list-disc list-inside space-y-1 text-sm text-blue-700">
+                    <li>除外機能で安全なランダム生成</li>
+                    <li>シーン管理で体系的な整理</li>
+                    <li>テキストボックス形式で効率的エクスポート</li>
+                    <li>必須選択保証で確実なプロンプト生成</li>
+                </ul>
+            </div>
+            <div class="bg-green-50 rounded-lg p-4">
+                <h4 class="font-semibold text-green-700 mb-3">🚀 生産性向上のコツ</h4>
+                <ul class="list-disc list-inside space-y-1 text-sm text-green-700">
+                    <li>事前の除外設定で時間短縮</li>
+                    <li>部分ランダムでバリエーション効率化</li>
+                    <li>シーン分類でプロジェクト管理</li>
+                    <li>バッチ処理で大量生成自動化</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-box text-white p-6 rounded-lg text-center">
+        <h3 class="text-xl font-bold mb-4">🌟 デルム式プロンプトジェネレーター v2.6</h3>
+        <p class="mb-4">AI画像生成の新しいスタンダードツール</p>
+        <div class="bg-white bg-opacity-20 rounded-lg p-4 inline-block">
+            <p class="text-lg"><i class="fas fa-link mr-2"></i>ツールURL:</p>
+            <p class="text-xl font-mono">https://dlmdlm3110.github.io/prompt-generator/</p>
+        </div>
+        <p class="text-sm mt-4 opacity-80">© 2024 デルム式プロンプトジェネレーター</p>
+    </div>
+</div>
+
+</div>
 </body>
 </html>
     <script id="html_badge_script1">
         window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
-            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDnfh4e2bVnk%2BjQ1hjlgyva%2F42%2Fu4apxCcBo0qCiWORVJ7hKOsMr%2F7xn6BP7bxGfiVPB6MRrKD0uW%2F2E7MwOQWD%2BaQUuLhmk6gY8w5paa06AW0qaPi2jeg1PCI7qN2dtV6g7Z6xdC7w9j1FrNwtbN9rYp6IPsWHoExUpRyPOM0JGuY3R1NIK6g5HG2sz1PlpOgHX1d7kj8tGpsfXaduEaUOjJSe0Tykva6uDhCKR5vxX3yxjnNrHVbEny87VrnEHTq6M0L8AuG%2BCjuRRozq0dhV6OzJQ4iHo3xxwLRgPD7VJN3u8a88kqpvhqn2kENBSl32ddsfjnnLk4cOjpqsKq86lHqo%2FslSUxpOb9XMjCY62KkQ2VFa4GE8Ot57LsUduHwPN8ZWu9rvNpuUg36gMGKYMX1dWToyb03hZUAJW6v8jTPgLK9qKnGQW0PVWUlVU%2F2RV%2FMFVoP1n92v6KC0%2BZPeA3EQSYPnbvuvhN223aHWyf5nXwBuZCeJrPsz6UrC1s8g%3D%3D";
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDs5jNyYF%2B8bGTHEQgb2sZIr86KREFiOk7TKk8NpT4J%2B95AvdxVXqPRDiCAtCuIKuaxvgQR6vnW9%2BPcSW0l%2FWZXgTNILK%2FSxVATGnMvcd0Z6aQzz1bhykRuoW60x%2B9bivbV%2FhXwsvAV1s9xDRPeo4CnpKvuYw7%2Fr1312HzhS3YSeT7Hhhrzh2pIB1rHRYCT%2FdDxilXMfTiu2uXf6IvQk95OumWpq0U9vZ0hnO3WZlYIeKrZn9%2FO3MOYuI9ABnfELRBET2hCDVnp4LFWMHKgSSGWfG9UmOlxDxq%2BFy%2B%2B1i%2BJ5E56cRWyrgvMIciUCyEkES8ubOjq281u1mzMWr82EBBHqxXbvEkNhUV1GA7W7rLyRiJi3pZtafG77ukaLTE%2F05fpmmZWYxNOAxGokwz0tHddojdK60YigWnn2ZBbQ%2FO1Wa%2FpzbXaRncjARAU9ySabTWLW9%2FR1VbO%2B7AwgQvafYl6eraxCcPlozyDnLaYVisgl8COYyS%2FPy7y8mfAEb6JIW03d6VNf80KhkfywjZzprIHU%3D";
         window.__genspark_locale = "ja-JP";
-        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDnfh4e2bVnk+jQ1hjlgyva/42/u4apxCcBo0qCiWORVJ7hKOsMr/7xn6BP7bxGfiVPB6MRrKD0uW/2E7MwOQWD+aQUuLhmk6gY8w5paa06AW0qaPi2jeg1PCI7qN2dtV6g7Z6xdC7w9j1FrNwtbN9rYp6IPsWHoExUpRyPOM0JGuY3R1NIK6g5HG2sz1PlpOgHX1d7kj8tGpsfXaduEaUOjJSe0Tykva6uDhCKR5vxX3yxjnNrHVbEny87VrnEHTq6M0L8AuG+CjuRRozq0dhV6OzJQ4iHo3xxwLRgPD7VJN3u8a88kqpvhqn2kENBSl32ddsfjnnLk4cOjpqsKq86lHqo/slSUxpOb9XMjCY62KkQ2VFa4GE8Ot57LsUduHwPN8ZWu9rvNpuUg36gMGKYMX1dWToyb03hZUAJW6v8jTPgLK9qKnGQW0PVWUlVU/2RV/MFVoP1n92v6KC0+ZPeA3EQSYPnbvuvhN223aHWyf5nXwBuZCeJrPsz6UrC1s8g==";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDs5jNyYF+8bGTHEQgb2sZIr86KREFiOk7TKk8NpT4J+95AvdxVXqPRDiCAtCuIKuaxvgQR6vnW9+PcSW0l/WZXgTNILK/SxVATGnMvcd0Z6aQzz1bhykRuoW60x+9bivbV/hXwsvAV1s9xDRPeo4CnpKvuYw7/r1312HzhS3YSeT7Hhhrzh2pIB1rHRYCT/dDxilXMfTiu2uXf6IvQk95OumWpq0U9vZ0hnO3WZlYIeKrZn9/O3MOYuI9ABnfELRBET2hCDVnp4LFWMHKgSSGWfG9UmOlxDxq+Fy++1i+J5E56cRWyrgvMIciUCyEkES8ubOjq281u1mzMWr82EBBHqxXbvEkNhUV1GA7W7rLyRiJi3pZtafG77ukaLTE/05fpmmZWYxNOAxGokwz0tHddojdK60YigWnn2ZBbQ/O1Wa/pzbXaRncjARAU9ySabTWLW9/R1VbO+7AwgQvafYl6eraxCcPlozyDnLaYVisgl8COYyS/Py7y8mfAEb6JIW03d6VNf80KhkfywjZzprIHU=";
     </script>
     
     <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
